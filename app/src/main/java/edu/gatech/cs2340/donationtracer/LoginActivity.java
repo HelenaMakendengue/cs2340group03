@@ -6,38 +6,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private Button submit;
+    private EditText usernameInput;
+    private EditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        submit = (Button) findViewById(R.id.button_login2);
+        usernameInput = (EditText) findViewById(R.id.username_input);
+        passwordInput = (EditText) findViewById(R.id.password_input);
 
-        Button btn_login = (Button)findViewById(R.id.button_login2);
-
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                if (usernameInput.getText().toString().trim().equals("user") &&
+                        passwordInput.getText().toString().trim().equals("pass")) {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                } else {
+                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-        Button btn_cancel = (Button)findViewById(R.id.button_cancel);
-
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
-            }
-        });
-
-        EditText userName = (EditText) findViewById(R.id.username_input);
-        EditText password = (EditText) findViewById(R.id.password_input);
-
-        String user = userName.toString().trim();
-        String pass = password.toString().trim();
-
     }
 }
