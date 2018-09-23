@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button submit;
     private EditText usernameInput;
     private EditText passwordInput;
+    private Button cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.button_login2);
         usernameInput = (EditText) findViewById(R.id.username_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
+        cancel = (Button) findViewById(R.id.button_cancel);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +34,13 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
             }
         });
     }
