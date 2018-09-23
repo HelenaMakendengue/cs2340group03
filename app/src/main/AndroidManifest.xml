@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
         <activity
             android:name=".LoginActivity">
         </activity>
@@ -26,11 +25,6 @@
             android:name=".MainActivity">
         </activity>
 
-
-=======
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
->>>>>>> ae2b28826a4d27c5ec4da58bd79c0472e5a6b7e8
     </application>
 
 </manifest>
