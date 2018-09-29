@@ -13,12 +13,21 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Button loginBtn = (Button) findViewById(R.id.button_login);
+        Button registerBtn = (Button) findViewById(R.id.button_register);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // write your button click code here
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+            }
+        });
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // write your button click code here
+                startActivity(new Intent(WelcomeActivity.this, RegistrationActivity.class));
             }
         });
 

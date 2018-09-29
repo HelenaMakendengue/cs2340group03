@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         Button logoutBtn = findViewById(R.id.button_logout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
             }
         });
     }

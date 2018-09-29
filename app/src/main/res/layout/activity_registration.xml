@@ -24,17 +24,16 @@
         <TextView
             android:id="@+id/registration_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="173dp"
             android:layout_marginStart="19dp"
             android:layout_marginTop="28dp"
-            android:text="@string/textview"
+            android:text="Register Your Account Here!"
             app:layout_constraintBottom_toTopOf="@+id/username_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Register Your Account Here!" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/username_container"
@@ -54,10 +53,8 @@
                 android:id="@+id/username_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/username"
-                android:inputType="text"
-                android:text="@string/textview"
-                tools:text="username" />
+                android:hint="Username:"
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -78,9 +75,8 @@
                 android:id="@+id/password_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                tools:text="password" />
+                android:hint="Password"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -102,9 +98,7 @@
                 android:id="@+id/email_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/contact_information"
-                android:text="@string/textview"
-                tools:text="email" />
+                android:hint="Email:" />
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
@@ -129,16 +123,15 @@
             android:layout_marginEnd="262dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
-            android:text="@string/textview"
+            android:text="Account Type:"
             app:layout_constraintBottom_toTopOf="@+id/spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_holder"
-            tools:text="Account Type:" />
+            app:layout_constraintTop_toBottomOf="@+id/email_holder" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -148,11 +141,11 @@
             android:text="Cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintStart_toEndOf="@+id/button_submit"
             app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -161,7 +154,7 @@
             android:layout_marginTop="78dp"
             android:text="Submit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/button_cancel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner" />
     </android.support.constraint.ConstraintLayout>
