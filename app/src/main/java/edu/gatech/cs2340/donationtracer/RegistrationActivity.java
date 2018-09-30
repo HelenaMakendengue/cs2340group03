@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -53,8 +54,28 @@ public class RegistrationActivity extends AppCompatActivity {
                 //note, whoever is implementing creating the user from this info
                 // still has to get the account type working
 
-                userDatabase.put(username, password);
-                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                if (username.equals("") || password.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Username or Password are empty", Toast.LENGTH_SHORT).show();
+                } else if (accountType.getSelectedItem().toString().equals("Admin") && password.contains("Ez7R")) {
+                    userDatabase.put(username, password);
+                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                } else if (accountType.getSelectedItem().toString().equals("Admin")) {
+                    Toast.makeText(getApplicationContext(), "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
+                } else if (accountType.getSelectedItem().toString().equals("Manager") && password.contains("QffJ")) {
+                    userDatabase.put(username, password);
+                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                } else if (accountType.getSelectedItem().toString().equals("Manager")) {
+                    Toast.makeText(getApplicationContext(), "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
+                } else if (accountType.getSelectedItem().toString().equals("Location Employee") && password.contains("OIU8")) {
+                    userDatabase.put(username, password);
+                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                } else if (accountType.getSelectedItem().toString().equals("Location Employee")) {
+                    Toast.makeText(getApplicationContext(), "Location Employee", Toast.LENGTH_SHORT).show();
+                } else {
+                    userDatabase.put(username, password);
+                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                }
+
             }
         });
 
