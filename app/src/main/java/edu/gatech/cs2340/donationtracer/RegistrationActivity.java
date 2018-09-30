@@ -1,17 +1,21 @@
 package edu.gatech.cs2340.donationtracer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import java.util.*;
 
-import java.util.EnumMap;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
 
     private Button submit;
     private EditText usernameInput;
@@ -34,12 +38,18 @@ public class RegistrationActivity extends AppCompatActivity {
         accountType = (Spinner) findViewById(R.id.spinner);
         cancel = (Button) findViewById(R.id.button_cancel);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accountTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountType.setAdapter(adapter);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = usernameInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
                 String email = emailInput.getText().toString().trim();
+
+
                 //note, whoever is implementing creating the user from this info
                 // still has to get the account type working
 
