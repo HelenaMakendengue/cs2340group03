@@ -70,7 +70,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     userDatabase.put(username, password);
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Location Employee")) {
-                    Toast.makeText(getApplicationContext(), "Location Employee", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Location Employee Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else {
                     userDatabase.put(username, password);
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
