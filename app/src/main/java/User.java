@@ -4,13 +4,13 @@ public class User {
 
     private String loginName;
     private String password;
-    private boolean accountState;
+    private AccountState accountState;
     private String contactInfo;
 
 
     //User constructor w/ parameters
 
-    public User (String loginName, String password, boolean accountState, String contactInfo) {
+    public User (String loginName, String password, AccountState accountState, String contactInfo) {
         this.loginName = loginName;
         this.password = password;
         this.accountState = accountState;
@@ -42,11 +42,11 @@ public class User {
 
     //accountName getter and setter methods
 
-    public boolean getAccountState() {
+    public AccountState getAccountState() {
         return this.accountState;
     }
 
-    public void setAccountState(boolean accountState) {
+    public void setAccountState(AccountState accountState) {
         this.accountState = accountState;
     }
 
