@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import java.util.*;
 
 import java.util.EnumMap;
 
@@ -18,6 +19,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText emailInput;
     private Button cancel;
     private Spinner accountType;
+    public static HashMap<String, String> userDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 String email = emailInput.getText().toString().trim();
                 //note, whoever is implementing creating the user from this info
                 // still has to get the account type working
+
+                userDatabase.put(username, password);
                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             }
         });
