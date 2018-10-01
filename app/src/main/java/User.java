@@ -4,24 +4,27 @@ public class User {
 
     private String loginName;
     private String password;
-    private AccountState accountState;
+    private boolean accountState;
     private String contactInfo;
+    private AccountType accountType;
 
 
     //User constructor w/ parameters
 
-    public User (String loginName, String password, AccountState accountState, String contactInfo) {
+    public User (String loginName, String password, boolean accountState, String contactInfo,
+                 AccountType accountType) {
         this.loginName = loginName;
         this.password = password;
         this.accountState = accountState;
         this.contactInfo = contactInfo;
+        this.accountType = accountType;
     }
 
 
     //loginName getter and setter methods
 
     public String getLoginName() {
-        return this.loginName;
+        return loginName;
     }
 
     public void setLoginName(String loginName) {
@@ -32,7 +35,7 @@ public class User {
     //password getter and setter methods
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
@@ -42,11 +45,11 @@ public class User {
 
     //accountName getter and setter methods
 
-    public AccountState getAccountState() {
-        return this.accountState;
+    public boolean getAccountState() {
+        return accountState;
     }
 
-    public void setAccountState(AccountState accountState) {
+    public void setAccountState(boolean accountState) {
         this.accountState = accountState;
     }
 
@@ -54,11 +57,22 @@ public class User {
     //contactInfo getter and setter methods
 
     public String getContactInfo() {
-        return this.contactInfo;
+        return contactInfo;
     }
 
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+
+    //accountType getter and setter methods
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
 }
