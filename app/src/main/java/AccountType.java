@@ -1,3 +1,6 @@
 public enum AccountType {
-    CUSTOMER, ADMIN, MANAGER, LOCATION_EMPLOYEE
+    CUSTOMER,
+    ADMIN,
+    MANAGER,
+    LOCATION_EMPLOYEE
 }
