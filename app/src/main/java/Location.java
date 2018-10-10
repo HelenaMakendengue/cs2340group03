@@ -1,67 +1,76 @@
 public class Location {
+
     String key;
     String name;
-    Location location;
+    String latitude;
+    String longitude;
+    String address;
     LocationType type;
-    String number;
+    String phoneNumber;
     String website;
 
-    public Location(String key, String name, Location location, LocationType type,
-                    String number, String website) {
+    public Location(String key, String name, String latitude, String longitude, String address,
+                    LocationType type, String phoneNumber, String website) {
         this.key = key;
         this.name = name;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
         this.type = type;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.website = website;
     }
 
     public String getKey() {
         return key;
     }
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+    public void setLongitude(String longitude) { this.longitude = longitude; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 
     public LocationType getType() {
         return type;
     }
-
-    public Location getLocation() {
-        return location;
-    }
+    public void setType(LocationType type) { this.type = type; }
 
     public String getNumber() {
-        return number;
+        return phoneNumber;
+    }
+    public void setNumber(String number) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getWebsite() {
         return website;
     }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public void setType(LocationType type) {
-        this.type = type;
-    }
-
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    //for debugging purposes
+    public String toString() {
+        return name;
+    }
 }
