@@ -2,9 +2,10 @@ import java.io.*;
 
 public class LocationReader {
 
-    public static void main(String[] args) throws Exception {
-
-        File file = new File("//Users//helenamakendengue//Desktop//cs2340//LocationData.csv");
+    public static void execute(String pathName) throws Exception {
+        File file = new File(pathName);
+//        File file = new File("//Users//ehuang42//Desktop//LocationData.csv");
+        //changes file path for personal debugging use
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         //Marks the start of the CSV file
