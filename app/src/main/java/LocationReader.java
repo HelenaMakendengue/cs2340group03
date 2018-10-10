@@ -1,11 +1,17 @@
 import java.io.*;
+import java.util.HashMap;
 
 public class LocationReader {
+    private static HashMap<Integer, Location> db = new HashMap<>();
+
+    public HashMap<Integer, Location> getDb() {
+        return db;
+    }
 
     public static void execute(String pathName) throws Exception {
 
         //changes file path for personal debugging use
-        File file = new File("//Users//ehuang42//Desktop//LocationData.csv");
+        File file = new File(pathName);
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -44,7 +50,9 @@ public class LocationReader {
 
             //example of creating a new Location
             Location example = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
-
+            //storing example to our database
+            //generate hashcode with ar[0] and ar[1] field
+            db.put(ar[9].hashCode(), example);
             //for debugging purposes
             System.out.println(example);
         }
@@ -52,4 +60,9 @@ public class LocationReader {
         //returns to the start of the CSV file
         br.reset();
     }
+    public static void main(String[] args) throws Exception {
+        execute("//Users//ehuang42//Desktop//LocationData.csv");
+        System.out.print(db.keySet());
+    }
+
 }

@@ -24,7 +24,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText emailInput;
     private Button cancel;
     private Spinner accountType;
-    public static HashMap<String, String> userDatabase = new HashMap<String,String>();;
+    public static HashMap<String, String> userDatabase = new HashMap<>();
 
 
     @Override
