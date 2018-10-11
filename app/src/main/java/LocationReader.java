@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class LocationReader {
     private static HashMap<Integer, Location> db = new HashMap<>();
 
-    public HashMap<Integer, Location> getDb() {
+    public static HashMap<Integer, Location> getDb() {
         return db;
     }
 
