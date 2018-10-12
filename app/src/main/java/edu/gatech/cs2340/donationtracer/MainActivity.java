@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-
+    private RecyclerAdapter adapter;
 
 
     @Override
@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecyclerAdapter(LocationReader.getDb());
+        recyclerView.setAdapter(adapter);
+
 
 
 
