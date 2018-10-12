@@ -21,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button logoutBtn = findViewById(R.id.button_logout);
 
+        try {
+            LocationReader.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Is there data?" + LocationReader.getDb().get(1));
+
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
