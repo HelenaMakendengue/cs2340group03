@@ -1,3 +1,5 @@
+package edu.gatech.cs2340.donationtracer;
+
 public class Location {
 
     String key;

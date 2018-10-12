@@ -1,3 +1,5 @@
+package edu.gatech.cs2340.donationtracer;
+
 import java.io.*;
 import java.util.HashMap;
 
