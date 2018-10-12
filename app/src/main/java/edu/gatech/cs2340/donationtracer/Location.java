@@ -73,6 +73,7 @@ public class Location {
 
     //for debugging purposes
     public String toString() {
-        return name;
+
+        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type + " " + phoneNumber + " " + website);
     }
 }
