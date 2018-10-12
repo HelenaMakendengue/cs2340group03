@@ -10,12 +10,11 @@ public class LocationReader {
         return db;
     }
 
-    public static void execute(String pathName) throws Exception {
+    public static void execute() throws Exception {
 
-        //changes file path for personal debugging use
-        File file = new File(pathName);
-
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        File file = new File("LocationData.txt");
+        String filePath = file.getAbsolutePath();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
 
         //Marks the start of the CSV file
         br.mark(1000);
@@ -63,7 +62,7 @@ public class LocationReader {
         br.reset();
     }
     public static void main(String[] args) throws Exception {
-        execute("//Users//ehuang42//Desktop//LocationData.csv");
+        execute();
         System.out.print(db.keySet());
     }
 
