@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,12 +35,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button logoutBtn = findViewById(R.id.button_logout);
 
-//        recyclerView = findViewById(R.id.recyclerView);
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(layoutManager);
-//        adapter = new RecyclerAdapter(getDb());
-//        recyclerView.setAdapter(adapter);
+        LocationReader();
+
+        recyclerView = findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecyclerAdapter(getDb());
+        recyclerView.setAdapter(adapter);
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
