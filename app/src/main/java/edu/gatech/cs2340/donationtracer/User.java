@@ -1,3 +1,7 @@
+package edu.gatech.cs2340.donationtracer;
+
+import edu.gatech.cs2340.donationtracer.AccountType;
+
 public class User {
 
     private String loginName;
