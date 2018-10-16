@@ -32,6 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     @Override
     public void onBindViewHolder(@NonNull LocationViewHolder holder, int position) {
         holder.locationName.setText(locations.get(position).getName());
+        holder.locationAddress.setText(locations.get(position).getAddress());
     }
 
     @Override
@@ -41,10 +42,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
 
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
         TextView locationName;
+        TextView locationAddress;
 
         public LocationViewHolder(View itemView) {
             super(itemView);
             locationName = itemView.findViewById(R.id.location_name);
+            locationAddress = itemView.findViewById(R.id.address);
         }
 
     }
