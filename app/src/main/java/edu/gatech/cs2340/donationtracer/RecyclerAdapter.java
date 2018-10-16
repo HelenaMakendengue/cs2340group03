@@ -1,11 +1,14 @@
 package edu.gatech.cs2340.donationtracer;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,8 +21,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
         this.locations = new ArrayList<>(locations.values());
     }
 
-
-
     @NonNull
     @Override
     public LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,9 +31,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LocationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LocationViewHolder holder, final int position) {
+
         holder.locationName.setText(locations.get(position).getName());
+        holder.location = locations.get(position);
+
+        holder.mView.setOnClickListener((v) -> {
+            Context context = v.getContext();
+            Toast.makeText(context, String.valueOf(position),Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(context, Location.class);
+            intent.putExtra("location_name", holder.location.getName());
+            intent.putExtra("location_type",holder.location.getType());
+            intent.putExtra("location_longitude",holder.location.getLongitude());
+            intent.putExtra("location_latitude",holder.location.getLatitude());
+            intent.putExtra("location_address",holder.location.getAddress());
+            intent.putExtra("location_number",holder.location.getNumber());
+
+            context.startActivity(intent);
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -40,12 +59,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     }
 
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
-        TextView locationName;
+        public final View mView;
+        public TextView locationName;
+        public Location location;
 
         public LocationViewHolder(View itemView) {
             super(itemView);
+            mView = itemView;
             locationName = itemView.findViewById(R.id.location_name);
         }
 
     }
+
+
+
+
+
 }

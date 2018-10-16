@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import java.io.BufferedReader;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static String TAG = "DONATION_TRACKER";
 
     private static HashMap<Integer, Location> db = new HashMap<>();
+
     public static HashMap<Integer, Location> getDb() {
         return db;
     }
