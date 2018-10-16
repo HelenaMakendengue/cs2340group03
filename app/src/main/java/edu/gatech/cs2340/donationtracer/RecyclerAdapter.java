@@ -33,14 +33,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     @Override
     public void onBindViewHolder(@NonNull LocationViewHolder holder, final int position) {
 
+        //bind data to widgets
         holder.locationName.setText(locations.get(position).getName());
+
+        //get location that corresponds to position
         holder.location = locations.get(position);
 
+        //user clicks on position
         holder.mView.setOnClickListener((v) -> {
             Context context = v.getContext();
             Toast.makeText(context, String.valueOf(position),Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(context, Location.class);
+            Intent intent = new Intent(context, LocationDetailActivity.class);
             intent.putExtra("location_name", holder.location.getName());
             intent.putExtra("location_type",holder.location.getType());
             intent.putExtra("location_longitude",holder.location.getLongitude());
