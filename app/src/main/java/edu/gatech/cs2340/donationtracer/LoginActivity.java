@@ -15,6 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordInput;
     private Button cancel;
 
+    public static String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
