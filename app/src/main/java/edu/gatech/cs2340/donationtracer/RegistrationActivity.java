@@ -16,8 +16,6 @@ import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
-
     private Button submit;
     private EditText usernameInput;
     private EditText passwordInput;
@@ -25,12 +23,13 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button cancel;
     private Spinner accountType;
     public static HashMap<String, User> userDatabase = new HashMap<>();
+    public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
 
-    protected User createUser(String name, String pass, String email, AccountType type) {
-        User curr = new User(name, pass, true, email, type);
-        return curr;
-                // String loginName, String password, boolean accountState, String contactInfo,
-        //                 AccountType accountType
+
+    // String loginName, String password, boolean accountState, String contactInfo, AccountType accountType
+    private User createUser(String name, String pass, String email, AccountType type) {
+        User newUser = new User(name, pass, true, email, type);
+        return newUser;
     }
 
     @Override
@@ -56,12 +55,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString().trim();
                 String email = emailInput.getText().toString().trim();
 
-
-                //note, whoever is implementing creating the user from this info
-                // still has to get the account type working
-
-                if (username.equals("") || password.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Username or Password are empty", Toast.LENGTH_SHORT).show();
+                if (username.equals("") || password.equals("") || email.equals("")) {
+                    Toast.makeText(getApplicationContext(), "One or more empty field(s)", Toast.LENGTH_SHORT).show();
+                } else if (userDatabase.containsKey(username)) {
+                    Toast.makeText(getApplicationContext(), "Username taken, please try again", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Admin") && password.contains("Ez7R")) {
                     // admin pass case
                     userDatabase.put(username, createUser(username, password, email, AccountType.ADMIN));

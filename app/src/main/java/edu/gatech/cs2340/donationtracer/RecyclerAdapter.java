@@ -57,7 +57,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
         });
     }
 
-
     @Override
     public int getItemCount() {
         return locations.size();
@@ -77,9 +76,4 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
         }
 
     }
-
-
-
-
-
 }

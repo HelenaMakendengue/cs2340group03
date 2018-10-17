@@ -1,21 +1,19 @@
 package edu.gatech.cs2340.donationtracer;
 
-import edu.gatech.cs2340.donationtracer.AccountType;
-
 public class User {
 
     private String loginName;
     private String password;
     private boolean accountState;
-    private String contactInfo;
+    private String email;
     private static AccountType accountType;
 
-    public User (String loginName, String password, boolean accountState, String contactInfo,
+    public User (String loginName, String password, boolean accountState, String email,
                  AccountType accountType) {
         this.loginName = loginName;
         this.password = password;
         this.accountState = accountState;
-        this.contactInfo = contactInfo;
+        this.email = email;
         this.accountType = accountType;
     }
 
@@ -40,14 +38,14 @@ public class User {
         this.accountState = accountState;
     }
 
-    public String getContactInfo() {
-        return contactInfo;
+    public String getEmail() {
+        return email;
     }
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static AccountType getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
     public void setAccountType(AccountType accountType) {

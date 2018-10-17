@@ -18,18 +18,17 @@ public class LocationDetailActivity extends AppCompatActivity {
 
         getIncomingIntent();
 
-//        // programming button visibility
-//        if (need to get account type == AccountType.CUSTOMER) {
-//            addItemBtn.setVisibility(View.GONE);
-//        } else {
-//            addItemBtn.setVisibility(View.VISIBLE);
-//        }
-
-        addItemBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(LocationDetailActivity.this, AddItemActivity.class));
-            }
-        });
+        // To be implemented -> get username somehow
+        if (true) {
+            addItemBtn.setVisibility(View.VISIBLE);
+            addItemBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    startActivity(new Intent(LocationDetailActivity.this, AddItemActivity.class));
+                }
+            });
+        } else {
+            addItemBtn.setVisibility(View.GONE);
+        }
     }
 
     private void getIncomingIntent() {
