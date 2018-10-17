@@ -1,7 +1,10 @@
 package edu.gatech.cs2340.donationtracer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LocationDetailActivity extends AppCompatActivity {
@@ -10,8 +13,23 @@ public class LocationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_detail);
+        Button seeInventoryBtn = (Button) findViewById(R.id.button_inventory);
+        Button addItemBtn = (Button) findViewById(R.id.button_addItem);
 
         getIncomingIntent();
+
+//        // programming button visibility
+//        if (need to get account type == AccountType.CUSTOMER) {
+//            addItemBtn.setVisibility(View.GONE);
+//        } else {
+//            addItemBtn.setVisibility(View.VISIBLE);
+//        }
+
+        addItemBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LocationDetailActivity.this, AddItemActivity.class));
+            }
+        });
     }
 
     private void getIncomingIntent() {

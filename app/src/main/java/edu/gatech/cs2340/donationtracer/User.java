@@ -8,7 +8,7 @@ public class User {
     private String password;
     private boolean accountState;
     private String contactInfo;
-    private AccountType accountType;
+    private static AccountType accountType;
 
     public User (String loginName, String password, boolean accountState, String contactInfo,
                  AccountType accountType) {
@@ -47,7 +47,7 @@ public class User {
         this.contactInfo = contactInfo;
     }
 
-    public AccountType getAccountType() {
+    public static AccountType getAccountType() {
         return accountType;
     }
     public void setAccountType(AccountType accountType) {
