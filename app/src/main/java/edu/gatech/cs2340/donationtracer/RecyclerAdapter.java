@@ -35,6 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
 
         //bind data to widgets
         holder.locationName.setText(locations.get(position).getName());
+        holder.locationAddress.setText(locations.get(position).getAddress());
 
         //get location that corresponds to position
         holder.location = locations.get(position);
@@ -65,12 +66,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public TextView locationName;
+        public TextView locationAddress;
         public Location location;
 
         public LocationViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             locationName = itemView.findViewById(R.id.location_name);
+            locationAddress = itemView.findViewById(R.id.address);
         }
 
     }
