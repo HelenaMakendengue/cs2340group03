@@ -19,6 +19,9 @@ public class ItemScroller extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_scroller);
 
+        itemList.add(new Item(null, MainActivity.getDb().get(1), "Shoe", "A singular shoe", 1.00, Category.Clothing));
+        System.out.println(itemList.get(0).getShortDesc());
+
         recyclerView = findViewById(R.id.itemRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);

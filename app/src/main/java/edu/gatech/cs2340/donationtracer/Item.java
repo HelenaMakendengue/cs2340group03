@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Item {
 
-    private Timestamp timestamp;
+    //private Timestamp timestamp;
     private Location location;
     private String shortDesc;
     private String fullDesc;
@@ -15,7 +15,7 @@ public class Item {
     // --> Picture (optional)
 
     public Item (Timestamp timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category) {
-        this.timestamp = timestamp;
+        //this.timestamp = timestamp;
         this.location = location;
         this.shortDesc = shortDesc;
         this.fullDesc = fullDesc;
@@ -23,11 +23,11 @@ public class Item {
         this.category = category;
     }
 
-    public Timestamp getTimestamp() {
+    /**public Timestamp getTimestamp() {
         return timestamp;
     }
     public void setTimestamp(Timestamp timestamp) { this.timestamp = timestamp; }
-
+*/
     public Location getLocation() {
         return location;
     }

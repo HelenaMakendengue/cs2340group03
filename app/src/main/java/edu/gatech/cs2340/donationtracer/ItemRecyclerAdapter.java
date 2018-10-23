@@ -20,7 +20,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.album_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_item_scroller, parent, false);
         ItemViewHolder itemViewHolder = new ItemViewHolder(view);
 
         return itemViewHolder;
@@ -31,7 +31,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
 
         //bind data to widgets
         holder.itemDesc.setText(items.get(position).getShortDesc());
-        //holder.itemCategory.setText(items.get(position).getCategory());
+        holder.itemCategory.setText(items.get(position).getCategory().getRepresentation());
 
         //get location that corresponds to position
         holder.item = items.get(position);
