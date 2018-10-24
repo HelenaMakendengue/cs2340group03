@@ -33,6 +33,7 @@ public class LocationDetailActivity extends AppCompatActivity {
 
         seeInventoryBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 startActivity(new Intent(LocationDetailActivity.this, ItemScroller.class));
             }
         });
