@@ -1,8 +1,11 @@
 package edu.gatech.cs2340.donationtracer;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class Item {
+
+    private static ArrayList<Item> itemList = new ArrayList<>();
 
     //private Timestamp timestamp;
     private Location location;
@@ -49,4 +52,7 @@ public class Item {
     public Category getCategory() { return category; }
     public void setCategory(Category category) { this.category = category; }
 
+    public static ArrayList<Item> getItemList() {
+        return itemList;
+    }
 }

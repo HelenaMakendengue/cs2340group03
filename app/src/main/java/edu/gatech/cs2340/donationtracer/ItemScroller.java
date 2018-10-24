@@ -9,30 +9,42 @@ import java.util.ArrayList;
 
 public class ItemScroller extends AppCompatActivity {
 
-    ArrayList<Item> itemList = new ArrayList<>();
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    ItemRecyclerAdapter adapter;
+    private ArrayList<Item> itemSubList = new ArrayList<>();
+    private String locationName;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private ItemRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_scroller);
 
-        itemList.add(new Item(null, MainActivity.getDb().get(1), "Shoe", "A singular shoe", 1.00, Category.Clothing));
-        System.out.println(itemList.get(0).getShortDesc());
+        getIncomingIntent();
+
+        Item.getItemList().add(new Item(null, MainActivity.getDb().get(1), "Shoe", "A singular shoe", 1.00, Category.Clothing));
+
+        /**for (Item i: Item.getItemList()) {
+            if (i.getLocation().getName().equals(locationName)) {
+                itemSubList.add(i);
+            }
+        }*/
 
         recyclerView = findViewById(R.id.itemRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ItemRecyclerAdapter(itemList);
+        adapter = new ItemRecyclerAdapter(Item.getItemList());
         recyclerView.setAdapter(adapter);
 
     }
 
-    public ArrayList<Item> getItemList() {
-        return itemList;
+    private void getIncomingIntent() {
+        locationName = getIntent().getStringExtra("location_name");
+    }
+
+    public ArrayList<Item> getItemSubList() {
+        return Item.getItemList();
     }
 
 }

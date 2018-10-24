@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class LocationDetailActivity extends AppCompatActivity {
 
+    private String locationName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,9 @@ public class LocationDetailActivity extends AppCompatActivity {
 
         addItemBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(LocationDetailActivity.this, AddItemActivity.class));
+                Intent intent = new Intent(LocationDetailActivity.this, AddItemActivity.class);
+                intent.putExtra("location_name", locationName);
+                startActivity(intent);
             }
         });
 
@@ -46,6 +50,7 @@ public class LocationDetailActivity extends AppCompatActivity {
             String latitude = getIntent().getStringExtra("location_latitude");
             String address = getIntent().getStringExtra("location_address");
             String number = getIntent().getStringExtra("location_number");
+            this.locationName = name;
 
             setWidget(name, type, longitude, latitude, address, number);
     }
