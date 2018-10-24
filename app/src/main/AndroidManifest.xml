@@ -20,7 +20,11 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LocationDetailActivity" />
-        <activity android:name=".AddItemActivity"></activity>
+        <activity android:name=".AddItemActivity" />
+        <activity
+            android:name=".ItemScroller"
+            android:label="@string/title_activity_item_scroller"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

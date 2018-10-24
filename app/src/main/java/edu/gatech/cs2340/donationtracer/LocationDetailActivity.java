@@ -3,14 +3,11 @@ package edu.gatech.cs2340.donationtracer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class LocationDetailActivity extends AppCompatActivity {
-
-    String search = LoginActivity.username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,18 +18,24 @@ public class LocationDetailActivity extends AppCompatActivity {
 
         getIncomingIntent();
 
-        // To be implemented -> get username somehow
-        // RegistrationActivity.userDatabase.get(search).getAccountType() != AccountType.CUSTOMER
-        if (true) {
-            addItemBtn.setVisibility(View.VISIBLE);
-            addItemBtn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    startActivity(new Intent(LocationDetailActivity.this, AddItemActivity.class));
-                }
-            });
-        } else {
-            addItemBtn.setVisibility(View.GONE);
-        }
+//        // programming button visibility
+//        if (need to get account type == AccountType.CUSTOMER) {
+//            addItemBtn.setVisibility(View.GONE);
+//        } else {
+//            addItemBtn.setVisibility(View.VISIBLE);
+//        }
+
+        addItemBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LocationDetailActivity.this, AddItemActivity.class));
+            }
+        });
+
+        seeInventoryBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LocationDetailActivity.this, ItemScroller.class));
+            }
+        });
     }
 
     private void getIncomingIntent() {
@@ -69,5 +72,6 @@ public class LocationDetailActivity extends AppCompatActivity {
         loc_number.setText(number);
 
     }
+
 
 }

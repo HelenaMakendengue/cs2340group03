@@ -6,4 +6,97 @@
     android:layout_height="match_parent"
     tools:context=".AddItemActivity">
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="146dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="title" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="304dp"
+        android:layout_height="62dp"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="210dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="description" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="303dp"
+        android:layout_height="63dp"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="272dp">
+
+        <EditText
+            android:id="@+id/dollar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="dollar value"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="311dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="351dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="297dp"
+        android:layout_height="51dp"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="388dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="comments" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Item"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="78dp"
+        android:layout_height="40dp"
+        android:text="Back"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="309dp"
+        android:layout_height="42dp"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="91dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/locationtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="location" />
+    </android.support.design.widget.TextInputLayout>
 </android.support.constraint.ConstraintLayout>
