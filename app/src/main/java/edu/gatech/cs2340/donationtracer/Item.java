@@ -55,4 +55,9 @@ public class Item {
     public static ArrayList<Item> getItemList() {
         return itemList;
     }
+
+    @Override
+    public String toString() {
+        return shortDesc;
+    }
 }

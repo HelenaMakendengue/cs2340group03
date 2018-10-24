@@ -19,6 +19,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         Button addItemBtn = (Button) findViewById(R.id.button_addItem);
 
         getIncomingIntent();
+        System.out.println("Location in LocationDetailActivity: " + locationName);
 
 //        // programming button visibility
 //        if (need to get account type == AccountType.CUSTOMER) {
@@ -37,7 +38,9 @@ public class LocationDetailActivity extends AppCompatActivity {
 
         seeInventoryBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(LocationDetailActivity.this, ItemScroller.class));
+                Intent intent = new Intent(LocationDetailActivity.this, ItemScroller.class);
+                intent.putExtra("location_name", locationName);
+                startActivity(intent);
             }
         });
     }

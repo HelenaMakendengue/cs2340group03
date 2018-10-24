@@ -1,10 +1,8 @@
 package edu.gatech.cs2340.donationtracer;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 
 
 public class AddItemActivity extends AppCompatActivity {
@@ -49,6 +46,14 @@ public class AddItemActivity extends AppCompatActivity {
                 Item newItem = new Item(timestamp, currentLocation, shortDesc,
                         fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
                 model.addItem(currentLocation, newItem);
+                startActivity(new Intent(AddItemActivity.this, LocationDetailActivity.class));
+
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(AddItemActivity.this, LocationDetailActivity.class));
 
             }

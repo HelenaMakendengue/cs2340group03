@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ItemScroller extends AppCompatActivity {
 
-    private ArrayList<Item> itemSubList = new ArrayList<>();
+    private ArrayList<Item> itemSubList;
     private String locationName;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -21,20 +21,23 @@ public class ItemScroller extends AppCompatActivity {
         setContentView(R.layout.activity_item_scroller);
 
         getIncomingIntent();
+        Model model = Model.getInstance();
+        itemSubList = model.locationDB.get(model.findLocation(locationName));
 
-        Item.getItemList().add(new Item(null, MainActivity.getDb().get(1), "Shoe", "A singular shoe", 1.00, Category.Clothing));
+        System.out.println("Location: " + locationName);
 
-        /**for (Item i: Item.getItemList()) {
-            if (i.getLocation().getName().equals(locationName)) {
-                itemSubList.add(i);
-            }
-        }*/
+        for (Item i: itemSubList) {
+            System.out.println(i);
+        }
+
+        //Item.getItemList().add(new Item(null, MainActivity.getDb().get(1), "Shoe", "A singular shoe", 1.00, Category.Clothing));
+
 
         recyclerView = findViewById(R.id.itemRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ItemRecyclerAdapter(Item.getItemList());
+        adapter = new ItemRecyclerAdapter(itemSubList);
         recyclerView.setAdapter(adapter);
 
     }
@@ -44,6 +47,6 @@ public class ItemScroller extends AppCompatActivity {
     }
 
     public ArrayList<Item> getItemSubList() {
-        return Item.getItemList();
+        return itemSubList;
     }
 }
