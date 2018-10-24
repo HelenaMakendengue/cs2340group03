@@ -34,5 +34,4 @@ public class ItemScroller extends AppCompatActivity {
     public ArrayList<Item> getItemList() {
         return itemList;
     }
-
 }

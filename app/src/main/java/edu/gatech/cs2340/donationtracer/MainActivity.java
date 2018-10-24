@@ -20,6 +20,8 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
+    Model model = Model.getInstance();
+
     public static String TAG = "DONATION_TRACKER";
 
     private static HashMap<Integer, Location> db = new HashMap<>();
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 //storing new Location to our database
                 //generate hashcode with ar[0] and ar[1] field
                 db.put(ar[9].hashCode(), newLocation);
+                model.addLocation(newLocation);
 
                 System.out.println(newLocation);
             }

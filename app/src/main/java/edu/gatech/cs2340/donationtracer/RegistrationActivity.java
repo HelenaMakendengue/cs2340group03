@@ -16,16 +16,21 @@ import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
-
     private Button submit;
     private EditText usernameInput;
     private EditText passwordInput;
     private EditText emailInput;
     private Button cancel;
     private Spinner accountType;
-    public static HashMap<String, String> userDatabase = new HashMap<>();
+    public static HashMap<String, User> userDatabase = new HashMap<>();
+    public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
 
+
+    // String loginName, String password, boolean accountState, String contactInfo, AccountType accountType
+    private User createUser(String name, String pass, String email, AccountType type) {
+        User newUser = new User(name, pass, true, email, type);
+        return newUser;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,32 +55,33 @@ public class RegistrationActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString().trim();
                 String email = emailInput.getText().toString().trim();
 
-
-                //note, whoever is implementing creating the user from this info
-                // still has to get the account type working
-
-                if (username.equals("") || password.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Username or Password are empty", Toast.LENGTH_SHORT).show();
+                if (username.equals("") || password.equals("") || email.equals("")) {
+                    Toast.makeText(getApplicationContext(), "One or more empty field(s)", Toast.LENGTH_SHORT).show();
+                } else if (userDatabase.containsKey(username)) {
+                    Toast.makeText(getApplicationContext(), "Username taken, please try again", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Admin") && password.contains("Ez7R")) {
-                    userDatabase.put(username, password);
+                    // admin pass case
+                    userDatabase.put(username, createUser(username, password, email, AccountType.ADMIN));
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Admin")) {
                     Toast.makeText(getApplicationContext(), "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Manager") && password.contains("QffJ")) {
-                    userDatabase.put(username, password);
+                    // manager pass case
+                    userDatabase.put(username, createUser(username, password, email, AccountType.MANAGER));
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Manager")) {
                     Toast.makeText(getApplicationContext(), "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Location Employee") && password.contains("OIU8")) {
-                    userDatabase.put(username, password);
+                    // location employee pass case
+                    userDatabase.put(username, createUser(username, password, email, AccountType.LOCATION_EMPLOYEE));
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Location Employee")) {
                     Toast.makeText(getApplicationContext(), "Location Employee Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else {
-                    userDatabase.put(username, password);
+                    // default - customer
+                    userDatabase.put(username, createUser(username, password, email, AccountType.CUSTOMER));
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 }
-
             }
         });
 

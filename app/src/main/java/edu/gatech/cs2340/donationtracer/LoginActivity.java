@@ -15,6 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordInput;
     private Button cancel;
 
+    public static String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +35,11 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString().trim();
 
                 if (RegistrationActivity.userDatabase.containsKey(userName)
-                        && RegistrationActivity.userDatabase.get(userName).equals(password)) {
+                        && RegistrationActivity.userDatabase.get(userName).getPassword().equals(password)) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                 }
-
-//                if (usernameInput.getText().toString().trim().equals("user") &&
-//                        passwordInput.getText().toString().trim().equals("pass")) {
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-//                }
-
             }
         });
 
