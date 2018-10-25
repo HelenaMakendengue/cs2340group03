@@ -10,6 +10,12 @@ import android.widget.TextView;
 public class LocationDetailActivity extends AppCompatActivity {
 
     private String locationName;
+    private String number;
+    private String address;
+    private String latitude;
+    private String longitude;
+    private String type;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,12 @@ public class LocationDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LocationDetailActivity.this, AddItemActivity.class);
                 intent.putExtra("location_name", locationName);
+                intent.putExtra("location_name", locationName);
+                intent.putExtra("location_type",type);
+                intent.putExtra("location_longitude",longitude);
+                intent.putExtra("location_latitude", latitude);
+                intent.putExtra("location_address", address);
+                intent.putExtra("location_number", number);
                 startActivity(intent);
             }
         });
@@ -40,6 +52,11 @@ public class LocationDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LocationDetailActivity.this, ItemScroller.class);
                 intent.putExtra("location_name", locationName);
+                intent.putExtra("location_type",type);
+                intent.putExtra("location_longitude",longitude);
+                intent.putExtra("location_latitude", latitude);
+                intent.putExtra("location_address", address);
+                intent.putExtra("location_number", number);
                 startActivity(intent);
             }
         });
@@ -54,6 +71,11 @@ public class LocationDetailActivity extends AppCompatActivity {
             String address = getIntent().getStringExtra("location_address");
             String number = getIntent().getStringExtra("location_number");
             this.locationName = name;
+            this.type = type;
+            this.longitude = longitude;
+            this.latitude = latitude;
+            this.address = address;
+            this.number = number;
 
             setWidget(name, type, longitude, latitude, address, number);
     }

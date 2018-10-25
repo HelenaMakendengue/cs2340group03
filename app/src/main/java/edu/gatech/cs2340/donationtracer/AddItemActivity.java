@@ -14,6 +14,13 @@ import java.sql.Timestamp;
 
 public class AddItemActivity extends AppCompatActivity {
 
+    private String locationName;
+    private String number;
+    private String address;
+    private String latitude;
+    private String longitude;
+    private String type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +28,14 @@ public class AddItemActivity extends AppCompatActivity {
 
         Button back = (Button) findViewById(R.id.button_cancel);
         Button submit = (Button) findViewById(R.id.button_add);
-        EditText location = (EditText) findViewById(R.id.editText_location);
+        //EditText location = (EditText) findViewById(R.id.editText_location);
         EditText title = (EditText) findViewById(R.id.editText_title);
         EditText description = (EditText) findViewById(R.id.editText_description);
         EditText value = (EditText) findViewById(R.id.editText_value);
         EditText comment = (EditText) findViewById(R.id.text4);
         Spinner category_spinner = (Spinner) findViewById(R.id.spinner_category);
 
-
+        getIncomingIntent();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category_spinner.setAdapter(adapter);
@@ -36,7 +43,7 @@ public class AddItemActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String locationTxt = location.getText().toString().trim();
+                String locationTxt = locationName;
                 String shortDesc = title.getText().toString().trim();
                 String fullDesc = description.getText().toString().trim();
                 Double dollarValue = Double.parseDouble(value.getText().toString());
@@ -46,7 +53,14 @@ public class AddItemActivity extends AppCompatActivity {
                 Item newItem = new Item(timestamp, currentLocation, shortDesc,
                         fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
                 model.addItem(currentLocation, newItem);
-                startActivity(new Intent(AddItemActivity.this, LocationDetailActivity.class));
+                Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
+                intent.putExtra("location_name", locationName);
+                intent.putExtra("location_type",type);
+                intent.putExtra("location_longitude",longitude);
+                intent.putExtra("location_latitude", latitude);
+                intent.putExtra("location_address", address);
+                intent.putExtra("location_number", number);
+                startActivity(intent);
 
             }
         });
@@ -55,10 +69,34 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AddItemActivity.this, LocationDetailActivity.class));
+                Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
+                intent.putExtra("location_name", locationName);
+                intent.putExtra("location_type",type);
+                intent.putExtra("location_longitude",longitude);
+                intent.putExtra("location_latitude", latitude);
+                intent.putExtra("location_address", address);
+                intent.putExtra("location_number", number);
+                startActivity(intent);
 
             }
         });
 
 
     }
+    private void getIncomingIntent() {
+        String type = getIntent().getStringExtra("location_type");
+        String longitude = getIntent().getStringExtra("location_longitude");
+        String latitude = getIntent().getStringExtra("location_latitude");
+        String address = getIntent().getStringExtra("location_address");
+        String number = getIntent().getStringExtra("location_number");
+        String location = getIntent().getStringExtra("location_name");
+        this.locationName = location;
+        this.type = type;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.address = address;
+        this.number = number;
+
+    }
 }
+
