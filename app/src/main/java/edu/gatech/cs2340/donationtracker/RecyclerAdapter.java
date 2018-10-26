@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

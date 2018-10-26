@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.gatech.cs2340.donationtracer">
+    package="edu.gatech.cs2340.donationtracker">
 
     <application
         android:allowBackup="true"
@@ -9,20 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity">
+        <activity android:name="edu.gatech.cs2340.donationtracker.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".LocationDetailActivity" />
-        <activity android:name=".AddItemActivity" />
+        <activity android:name="edu.gatech.cs2340.donationtracker.LoginActivity" />
+        <activity android:name="edu.gatech.cs2340.donationtracker.MainActivity" />
+        <activity android:name="edu.gatech.cs2340.donationtracker.RegistrationActivity" />
+        <activity android:name="edu.gatech.cs2340.donationtracker.LocationDetailActivity" />
+        <activity android:name="edu.gatech.cs2340.donationtracker.AddItemActivity" />
         <activity
-            android:name=".ItemScroller"
+            android:name="edu.gatech.cs2340.donationtracker.ItemScroller"
             android:label="@string/title_activity_item_scroller"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

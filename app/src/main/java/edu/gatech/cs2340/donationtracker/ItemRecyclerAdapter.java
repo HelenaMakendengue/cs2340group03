@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
