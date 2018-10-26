@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "edu.gatech.cs2340.donationtracer"
+        applicationId "edu.gatech.cs2340.donationtracker"
         minSdkVersion 25
         targetSdkVersion 27
         versionCode 1
@@ -31,4 +31,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:design:27.1.1'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
