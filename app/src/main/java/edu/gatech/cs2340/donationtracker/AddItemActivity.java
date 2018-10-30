@@ -57,8 +57,7 @@ public class AddItemActivity extends AppCompatActivity {
                 Double dollarValue = Double.parseDouble(value.getText().toString());
                 Model model = Model.getInstance();
                 Location currentLocation = model.findLocation(locationTxt);
-                String timestamp = "12:00";
-                //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String timestamp = new Timestamp(System.currentTimeMillis()).toString();
 
                 String id = databaseItems.push().getKey();
                 

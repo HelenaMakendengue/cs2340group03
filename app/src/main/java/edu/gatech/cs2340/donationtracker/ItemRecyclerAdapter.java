@@ -53,7 +53,6 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
         });
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
