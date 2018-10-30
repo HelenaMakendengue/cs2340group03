@@ -26,6 +26,7 @@
         <activity android:name="edu.gatech.cs2340.donationtracker.MainActivity" />
         <activity android:name="edu.gatech.cs2340.donationtracker.RegistrationActivity" />
         <activity android:name="edu.gatech.cs2340.donationtracker.LocationDetailActivity" />
+        <activity android:name="edu.gatech.cs2340.donationtracker.ItemDetailActivity" />
         <activity android:name="edu.gatech.cs2340.donationtracker.AddItemActivity" />
         <activity
             android:name="edu.gatech.cs2340.donationtracker.ItemScroller"
