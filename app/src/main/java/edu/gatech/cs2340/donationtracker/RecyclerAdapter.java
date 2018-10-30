@@ -10,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,8 +20,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
 
     private ArrayList<Location> locations;
 
+    //public DatabaseReference databaseLocations;
+
     public RecyclerAdapter(HashMap<Integer, Location> locations) {
         this.locations = new ArrayList<>(locations.values());
+        //this.databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
     }
 
     @NonNull
@@ -63,7 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     }
 
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
+        public View mView;
         public TextView locationName;
         public TextView locationAddress;
         public Location location;
@@ -73,6 +79,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
             mView = itemView;
             locationName = itemView.findViewById(R.id.location_name);
             locationAddress = itemView.findViewById(R.id.address);
+
         }
 
     }

@@ -9,7 +9,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_detail);
+        setContentView(R.layout.item_detail);
 
         getIncomingIntent();
     }

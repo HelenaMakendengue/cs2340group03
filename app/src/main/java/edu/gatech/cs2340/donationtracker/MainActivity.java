@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         //Database References
         databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
 
-
         //Button References
         Button logoutBtn = findViewById(R.id.button_logout);
 
@@ -59,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RecyclerAdapter(getDb());
         recyclerView.setAdapter(adapter);
 
+
         //Button Event Listeners
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -66,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
 
     private void LocationReader() {
 

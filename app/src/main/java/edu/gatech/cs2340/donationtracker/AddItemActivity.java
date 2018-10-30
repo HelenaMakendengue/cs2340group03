@@ -32,7 +32,7 @@ public class AddItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_item_new);
 
         //Database References
-        databaseItems = FirebaseDatabase.getInstance().getReference("items");
+        databaseItems = FirebaseDatabase.getInstance().getReference("donations");
 
         Button back = (Button) findViewById(R.id.button_cancel);
         Button submit = (Button) findViewById(R.id.button_add);
@@ -57,17 +57,17 @@ public class AddItemActivity extends AppCompatActivity {
                 Double dollarValue = Double.parseDouble(value.getText().toString());
                 Model model = Model.getInstance();
                 Location currentLocation = model.findLocation(locationTxt);
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String timestamp = "12:00";
+                //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
                 String id = databaseItems.push().getKey();
                 
                 Item newItem = new Item(timestamp, currentLocation, shortDesc,
                         fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
 
-                databaseItems.child(id).setValue(newItem);
+                databaseItems.child(newItem.getLocation().getName()).push().setValue(newItem);
 
-
-                model.addItem(currentLocation, newItem);
+                //model.addItem(currentLocation, newItem);
                 Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
                 intent.putExtra("location_name", locationName);
                 intent.putExtra("location_type",type);
