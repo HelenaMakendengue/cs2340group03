@@ -10,11 +10,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    DatabaseReference databaseUsers;
 
     private Button submit;
     private EditText usernameInput;
@@ -28,7 +33,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
     // String loginName, String password, boolean accountState, String contactInfo, AccountType accountType
     private User createUser(String name, String pass, String email, AccountType type) {
+
+        String id = databaseUsers.push().getKey();
         User newUser = new User(name, pass, true, email, type);
+        databaseUsers.child(id).setValue(newUser);
+
         return newUser;
     }
 
@@ -47,6 +56,10 @@ public class RegistrationActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accountTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accountType.setAdapter(adapter);
+
+        //Database References
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

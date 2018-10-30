@@ -9,10 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.sql.Timestamp;
 
 
 public class AddItemActivity extends AppCompatActivity {
+
+    DatabaseReference databaseItems;
 
     private String locationName;
     private String number;
@@ -25,6 +30,9 @@ public class AddItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item_new);
+
+        //Database References
+        databaseItems = FirebaseDatabase.getInstance().getReference("donations");
 
         Button back = (Button) findViewById(R.id.button_cancel);
         Button submit = (Button) findViewById(R.id.button_add);
@@ -49,10 +57,16 @@ public class AddItemActivity extends AppCompatActivity {
                 Double dollarValue = Double.parseDouble(value.getText().toString());
                 Model model = Model.getInstance();
                 Location currentLocation = model.findLocation(locationTxt);
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String timestamp = new Timestamp(System.currentTimeMillis()).toString();
+
+                String id = databaseItems.push().getKey();
+                
                 Item newItem = new Item(timestamp, currentLocation, shortDesc,
                         fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
-                model.addItem(currentLocation, newItem);
+
+                databaseItems.child(newItem.getLocation().getName()).push().setValue(newItem);
+
+                //model.addItem(currentLocation, newItem);
                 Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
                 intent.putExtra("location_name", locationName);
                 intent.putExtra("location_type",type);
@@ -80,8 +94,6 @@ public class AddItemActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
     private void getIncomingIntent() {
         String type = getIntent().getStringExtra("location_type");
@@ -96,7 +108,6 @@ public class AddItemActivity extends AppCompatActivity {
         this.latitude = latitude;
         this.address = address;
         this.number = number;
-
     }
 }
 
