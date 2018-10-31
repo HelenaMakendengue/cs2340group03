@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +44,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
             Context context = v.getContext();
             Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(context, LocationDetailActivity.class);
+            Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra("item_timeStamp", holder.item.getTimestamp());
             intent.putExtra("item_fullDesc", holder.item.getFullDesc());
             intent.putExtra("item_category", holder.item.getCategory());
@@ -52,7 +52,6 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
             context.startActivity(intent);
         });
     }
-
 
     @Override
     public int getItemCount() {

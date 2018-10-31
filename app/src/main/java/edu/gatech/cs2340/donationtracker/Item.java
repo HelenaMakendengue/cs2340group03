@@ -1,13 +1,13 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Item {
 
     private static ArrayList<Item> itemList = new ArrayList<>();
 
-    private Timestamp timestamp;
+    private String timestamp;
     private Location location;
     private String shortDesc;
     private String fullDesc;
@@ -17,7 +17,7 @@ public class Item {
     // --> Comments (optional)
     // --> Picture (optional)
 
-    public Item (Timestamp timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category) {
+    public Item (String timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category) {
         this.timestamp = timestamp;
         this.location = location;
         this.shortDesc = shortDesc;
@@ -26,10 +26,12 @@ public class Item {
         this.category = category;
     }
 
-    public Timestamp getTimestamp() {
+    public Item() {}
+
+    public String getTimestamp() {
         return timestamp;
     }
-    public void setTimestamp(Timestamp timestamp) { this.timestamp = timestamp; }
+    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
 
     public Location getLocation() {
         return location;

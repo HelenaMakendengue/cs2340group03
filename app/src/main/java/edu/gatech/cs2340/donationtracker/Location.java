@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 public class Location {
 
@@ -10,6 +10,8 @@ public class Location {
     LocationType type;
     String phoneNumber;
     String website;
+
+    public Location() {};
 
     public Location(String key, String name, String latitude, String longitude, String address,
                     LocationType type, String phoneNumber, String website) {
