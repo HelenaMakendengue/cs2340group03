@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +16,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -24,6 +33,7 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ItemRecyclerAdapter adapter;
+    public DatabaseReference databaseDonations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +53,44 @@ public class SearchActivity extends AppCompatActivity {
         master = new ArrayList<>();
         locationNames = new ArrayList<>();
 
-        master.add(new Item(null, null, "shoe", "big shoe", 65.0, Category.Clothing));
+
+        List<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
+
+        for (Location loc: buffer) {
+            locationNames.add(loc.getName());
+        }
+
+        databaseDonations = FirebaseDatabase.getInstance().getReference("donations");
+
+        for (String loc : locationNames) {
+            Query query = databaseDonations.child(loc);
+
+            query.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot d : dataSnapshot.getChildren()) {
+                        // Update my client activity list with tbe one new item received from firebase.
+                        master.add(d.getValue(Item.class));
+                    }
+
+                    adapter = new ItemRecyclerAdapter(master);
+                    recyclerView.setAdapter(adapter);
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("Failed to read value.", error.toException());
+                }
+            });
+        }
 
 
         //set up spinners
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
+        ArrayAdapter<Category> spinnerAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categories.setAdapter(spinnerAdapter);
 
