@@ -8,14 +8,43 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.*;
+import android.support.annotation.NonNull;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button submit;
     private EditText usernameInput;
     private EditText passwordInput;
     private Button cancel;
-
+    private FirebaseAuth mAuth;
     public static String username;
+
+    //firebase auth login
+    private void logIn(String user, String pass) {
+        mAuth.signInWithEmailAndPassword(user, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // [START_EXCLUDE]
+                        if (!task.isSuccessful()) {
+                            startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+                        }
+                    }
+                });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = (EditText) findViewById(R.id.username_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
         cancel = (Button) findViewById(R.id.button_cancel);
+        mAuth = FirebaseAuth.getInstance();
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,12 +65,13 @@ public class LoginActivity extends AppCompatActivity {
                 String userName = usernameInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
 
-                if (RegistrationActivity.userDatabase.containsKey(userName)
-                        && RegistrationActivity.userDatabase.get(userName).getPassword().equals(password)) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else {
-                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-                }
+//                if (RegistrationActivity.userDatabase.containsKey(userName)
+//                        && RegistrationActivity.userDatabase.get(userName).getPassword().equals(password)) {
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+//                }
+                logIn(userName, password);
             }
         });
 
