@@ -29,7 +29,7 @@ public class AddItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item_new);
+        setContentView(R.layout.activity_add_item);
 
         //Database References
         databaseItems = FirebaseDatabase.getInstance().getReference("donations");
@@ -40,7 +40,7 @@ public class AddItemActivity extends AppCompatActivity {
         EditText title = (EditText) findViewById(R.id.editText_title);
         EditText description = (EditText) findViewById(R.id.editText_description);
         EditText value = (EditText) findViewById(R.id.editText_value);
-        EditText comment = (EditText) findViewById(R.id.text4);
+        EditText comment = (EditText) findViewById(R.id.editText_comment);
         Spinner category_spinner = (Spinner) findViewById(R.id.spinner_category);
 
         getIncomingIntent();
@@ -110,4 +110,3 @@ public class AddItemActivity extends AppCompatActivity {
         this.number = number;
     }
 }
-
