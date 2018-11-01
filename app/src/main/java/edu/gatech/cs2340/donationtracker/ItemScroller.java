@@ -50,7 +50,7 @@ public class ItemScroller extends AppCompatActivity {
 
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     // Update my client activity list with tbe one new item received from firebase.
-                    itemSubList.add( d.getValue(Item.class));
+                    itemSubList.add(d.getValue(Item.class));
                 }
 
                 adapter = new ItemRecyclerAdapter(itemSubList);
@@ -78,10 +78,7 @@ public class ItemScroller extends AppCompatActivity {
                 startActivity(new Intent(ItemScroller.this, SearchActivity.class));
             }
         });
-
     }
-
-
 
     private void getIncomingIntent() {
         locationName = getIntent().getStringExtra("location_name");
