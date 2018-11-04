@@ -22,11 +22,14 @@ import java.util.ArrayList;
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private ArrayList<Location> locationLst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        locationLst = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -47,7 +50,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        ArrayList<Location> locationLst = new ArrayList<>();
+       // ArrayList<Location> locationLst = new ArrayList<>();
 
 
         // Example: Add a marker in Sydney and move the camera
@@ -67,7 +70,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     // Update my client activity list with tbe one new item received from firebase.
-                    locationLst.add(d.getValue(Location.class));
+                    Location location = d.getValue(Location.class);
+                    //locationLst.add(d.getValue(Location.class));
+                    LatLng latLng = new LatLng(Double.parseDouble(location.getLatitude()),
+                            Double.parseDouble(location.getLongitude()));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("Marker: " + location.getName()));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }
 
@@ -77,11 +85,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 Log.w("Failed to read value.", error.toException());
             }
         });
+/*
 
-        for (Location location : locationLst) {
-            LatLng latLng = new LatLng(Double.parseDouble(location.getLatitude()),
-                    Double.parseDouble(location.getLongitude()));
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker: " + location.getName()));
-        }
+        */
     }
 }
