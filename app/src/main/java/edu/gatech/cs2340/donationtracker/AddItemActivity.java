@@ -26,6 +26,20 @@ public class AddItemActivity extends AppCompatActivity {
     private String longitude;
     private String type;
 
+    protected void addItem(Item item) {
+        databaseItems.child(item.getLocation().getName()).push().setValue(item);
+
+        //model.addItem(currentLocation, newItem);
+        Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
+        intent.putExtra("location_name", locationName);
+        intent.putExtra("location_type",type);
+        intent.putExtra("location_longitude",longitude);
+        intent.putExtra("location_latitude", latitude);
+        intent.putExtra("location_address", address);
+        intent.putExtra("location_number", number);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,19 +77,7 @@ public class AddItemActivity extends AppCompatActivity {
                 
                 Item newItem = new Item(timestamp, currentLocation, shortDesc,
                         fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
-
-                databaseItems.child(newItem.getLocation().getName()).push().setValue(newItem);
-
-                //model.addItem(currentLocation, newItem);
-                Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
-                intent.putExtra("location_name", locationName);
-                intent.putExtra("location_type",type);
-                intent.putExtra("location_longitude",longitude);
-                intent.putExtra("location_latitude", latitude);
-                intent.putExtra("location_address", address);
-                intent.putExtra("location_number", number);
-                startActivity(intent);
-
+                addItem(newItem);
             }
         });
 
