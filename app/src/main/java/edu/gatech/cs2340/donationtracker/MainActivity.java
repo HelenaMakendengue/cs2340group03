@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Button References
         Button logoutBtn = findViewById(R.id.button_logout);
+        Button mapBtn = findViewById(R.id.button_mapView);
 
         //Methods
         LocationReader();
@@ -65,12 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
             }
         });
+
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapActivity.class));
+            }
+        });
     }
-
-
-
-
-
 
     private void LocationReader() {
 

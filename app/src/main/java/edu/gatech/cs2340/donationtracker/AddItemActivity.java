@@ -26,10 +26,24 @@ public class AddItemActivity extends AppCompatActivity {
     private String longitude;
     private String type;
 
+    protected void addItem(Item item) {
+        databaseItems.child(item.getLocation().getName()).push().setValue(item);
+
+        //model.addItem(currentLocation, newItem);
+        Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
+        intent.putExtra("location_name", locationName);
+        intent.putExtra("location_type",type);
+        intent.putExtra("location_longitude",longitude);
+        intent.putExtra("location_latitude", latitude);
+        intent.putExtra("location_address", address);
+        intent.putExtra("location_number", number);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item_new);
+        setContentView(R.layout.activity_add_item);
 
         //Database References
         databaseItems = FirebaseDatabase.getInstance().getReference("donations");
@@ -40,7 +54,7 @@ public class AddItemActivity extends AppCompatActivity {
         EditText title = (EditText) findViewById(R.id.editText_title);
         EditText description = (EditText) findViewById(R.id.editText_description);
         EditText value = (EditText) findViewById(R.id.editText_value);
-        EditText comment = (EditText) findViewById(R.id.text4);
+        EditText comment = (EditText) findViewById(R.id.editText_comment);
         Spinner category_spinner = (Spinner) findViewById(R.id.spinner_category);
 
         getIncomingIntent();
@@ -63,19 +77,7 @@ public class AddItemActivity extends AppCompatActivity {
                 
                 Item newItem = new Item(timestamp, currentLocation, shortDesc,
                         fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
-
-                databaseItems.child(newItem.getLocation().getName()).push().setValue(newItem);
-
-                //model.addItem(currentLocation, newItem);
-                Intent intent = new Intent(AddItemActivity.this, LocationDetailActivity.class);
-                intent.putExtra("location_name", locationName);
-                intent.putExtra("location_type",type);
-                intent.putExtra("location_longitude",longitude);
-                intent.putExtra("location_latitude", latitude);
-                intent.putExtra("location_address", address);
-                intent.putExtra("location_number", number);
-                startActivity(intent);
-
+                addItem(newItem);
             }
         });
 
@@ -110,4 +112,3 @@ public class AddItemActivity extends AppCompatActivity {
         this.number = number;
     }
 }
-
