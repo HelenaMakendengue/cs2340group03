@@ -50,13 +50,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-       // ArrayList<Location> locationLst = new ArrayList<>();
-
-
-        // Example: Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         DatabaseReference databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
 
@@ -64,14 +57,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         query.addValueEventListener(new ValueEventListener() {
 
-            //public ArrayList<Item> itemSubList;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                // reads locations from firebase and drops markers (location name & number) on map
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
-                    // Update my client activity list with tbe one new item received from firebase.
                     Location location = d.getValue(Location.class);
-                    //locationLst.add(d.getValue(Location.class));
                     LatLng latLng = new LatLng(Double.parseDouble(location.getLatitude()),
                             Double.parseDouble(location.getLongitude()));
                     mMap.addMarker(new MarkerOptions().position(latLng).title(location.getName() + location.getNumber()));
@@ -85,8 +76,5 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 Log.w("Failed to read value.", error.toException());
             }
         });
-/*
-
-        */
     }
 }

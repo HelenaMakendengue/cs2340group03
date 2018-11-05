@@ -9,8 +9,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static String TAG = "DONATION_TRACKER";
 
     DatabaseReference databaseLocations;
-
+    private HashSet<Location> locationSet;
     private static HashMap<Integer, Location> db = new HashMap<>();
     public static HashMap<Integer, Location> getDb() {
         return db;
@@ -40,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        locationSet = getLoactionSet();
         //Database References
         databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
 
@@ -49,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Button mapBtn = findViewById(R.id.button_mapView);
 
         //Methods
-        LocationReader();
+        LocationReader(locationSet);
 
         //Recycler Stuff
         recyclerView = findViewById(R.id.recyclerView);
@@ -74,7 +82,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void LocationReader() {
+    // reads from firebase and populates the locationSet.
+    // Prevents locationReader from adding duplicates.
+    public HashSet<Location> getLoactionSet() {
+
+        DatabaseReference databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
+
+        Query query = databaseLocations;
+        HashSet<Location> mySet = new HashSet<>();
+
+        query.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                // reads locations from firebase and drops markers (location name & number) on map
+                for (DataSnapshot d: dataSnapshot.getChildren()) {
+                    Location location = d.getValue(Location.class);
+                    mySet.add(location);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return mySet;
+    }
+
+    private void LocationReader(HashSet set) {
 
         try {
 
@@ -116,19 +154,18 @@ public class MainActivity extends AppCompatActivity {
 
                 //new Location is created
                 Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
+                if (!set.contains(newLocation)) {
+                    databaseLocations.child(id).setValue(newLocation);
 
-                databaseLocations.child(id).setValue(newLocation);
+                    //storing new Location to our database
+                    //generate hashcode with ar[0] and ar[1] field
+                    db.put(ar[9].hashCode(), newLocation);
+                    model.addLocation(newLocation);
 
-                //storing new Location to our database
-                //generate hashcode with ar[0] and ar[1] field
-                db.put(ar[9].hashCode(), newLocation);
-                model.addLocation(newLocation);
-
-                System.out.println(newLocation);
+                    System.out.println(newLocation);
+                }
             }
-
             br.close();
-
         } catch (IOException e) {
             Log.e(MainActivity.TAG, "error reading assets", e);
         }
