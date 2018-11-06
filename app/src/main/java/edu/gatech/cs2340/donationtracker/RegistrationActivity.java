@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,21 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
+import com.google.firebase.auth.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    DatabaseReference databaseUsers;
+    private FirebaseAuth mAuth;
 
     private Button submit;
     private EditText usernameInput;
@@ -28,8 +38,31 @@ public class RegistrationActivity extends AppCompatActivity {
 
     // String loginName, String password, boolean accountState, String contactInfo, AccountType accountType
     private User createUser(String name, String pass, String email, AccountType type) {
+
+        String id = databaseUsers.push().getKey();
         User newUser = new User(name, pass, true, email, type);
+        databaseUsers.child(id).setValue(newUser);
         return newUser;
+    }
+
+    private void createAuth(String user, String pass, String email, AccountType type) {
+        mAuth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(RegistrationActivity.this, ":)", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        userDatabase.put(email, createUser(user, pass, email, type));
     }
 
     @Override
@@ -44,9 +77,15 @@ public class RegistrationActivity extends AppCompatActivity {
         accountType = (Spinner) findViewById(R.id.spinner);
         cancel = (Button) findViewById(R.id.button_cancel);
 
+        mAuth = FirebaseAuth.getInstance();
+
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accountTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accountType.setAdapter(adapter);
+
+        //Database References
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,26 +100,25 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Username taken, please try again", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Admin") && password.contains("Ez7R")) {
                     // admin pass case
-                    userDatabase.put(username, createUser(username, password, email, AccountType.ADMIN));
+                    createAuth(username, password, email, AccountType.ADMIN);
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Admin")) {
                     Toast.makeText(getApplicationContext(), "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Manager") && password.contains("QffJ")) {
                     // manager pass case
-                    userDatabase.put(username, createUser(username, password, email, AccountType.MANAGER));
+                    createAuth(username, password, email, AccountType.MANAGER);
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Manager")) {
                     Toast.makeText(getApplicationContext(), "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else if (accountType.getSelectedItem().toString().equals("Location Employee") && password.contains("OIU8")) {
                     // location employee pass case
-                    userDatabase.put(username, createUser(username, password, email, AccountType.LOCATION_EMPLOYEE));
+                    createAuth(username, password, email, AccountType.LOCATION_EMPLOYEE);
                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                 } else if (accountType.getSelectedItem().toString().equals("Location Employee")) {
                     Toast.makeText(getApplicationContext(), "Location Employee Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 } else {
                     // default - customer
-                    userDatabase.put(username, createUser(username, password, email, AccountType.CUSTOMER));
-                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                    createAuth(username, password, email, AccountType.CUSTOMER);
                 }
             }
         });

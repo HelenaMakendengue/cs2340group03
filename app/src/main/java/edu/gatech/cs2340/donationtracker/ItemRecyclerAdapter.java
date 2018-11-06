@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Intent;
+import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -37,22 +40,18 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
         holder.item = items.get(position);
 
         //user clicks on position
-        /** holder.mView.setOnClickListener((v) -> {
+        holder.mView.setOnClickListener((v) -> {
             Context context = v.getContext();
             Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(context, LocationDetailActivity.class);
-            intent.putExtra("location_name", holder.location.getName());
-            intent.putExtra("location_type", holder.location.getType());
-            intent.putExtra("location_longitude", holder.location.getLongitude());
-            intent.putExtra("location_latitude", holder.location.getLatitude());
-            intent.putExtra("location_address", holder.location.getAddress());
-            intent.putExtra("location_number", holder.location.getNumber());
+            Intent intent = new Intent(context, ItemDetailActivity.class);
+            intent.putExtra("item_timeStamp", holder.item.getTimestamp());
+            intent.putExtra("item_fullDesc", holder.item.getFullDesc());
+            intent.putExtra("item_category", holder.item.getCategory());
 
             context.startActivity(intent);
-        }); */
+        });
     }
-
 
     @Override
     public int getItemCount() {

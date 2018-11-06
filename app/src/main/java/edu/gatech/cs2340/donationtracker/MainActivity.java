@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.donationtracer;
+package edu.gatech.cs2340.donationtracker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static String TAG = "DONATION_TRACKER";
 
-    private static HashMap<Integer, Location> db = new HashMap<>();
+    DatabaseReference databaseLocations;
 
+    private static HashMap<Integer, Location> db = new HashMap<>();
     public static HashMap<Integer, Location> getDb() {
         return db;
     }
@@ -38,10 +40,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button logoutBtn = findViewById(R.id.button_logout);
 
+        //Database References
+        databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
+
+        //Button References
+        Button logoutBtn = findViewById(R.id.button_logout);
+        Button mapBtn = findViewById(R.id.button_mapView);
+
+        //Methods
         LocationReader();
 
+        //Recycler Stuff
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
@@ -49,9 +59,17 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RecyclerAdapter(getDb());
         recyclerView.setAdapter(adapter);
 
+
+        //Button Event Listeners
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+            }
+        });
+
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
         });
     }
@@ -94,8 +112,12 @@ public class MainActivity extends AppCompatActivity {
                     locationType = LocationType.WAREHOUSE;
                 }
 
+                String id = databaseLocations.push().getKey();
+
                 //new Location is created
                 Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
+
+                databaseLocations.child(id).setValue(newLocation);
 
                 //storing new Location to our database
                 //generate hashcode with ar[0] and ar[1] field
