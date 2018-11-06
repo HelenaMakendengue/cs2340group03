@@ -13,6 +13,16 @@ public class Item {
     private double dollarValue;
     private Category category;
 
+    /**
+     * This method creates an item with the given parameters
+     *
+     * @param timestamp the timestamp of the item's creation
+     * @param location the location of the item's availability
+     * @param shortDesc the short description of the item
+     * @param fullDesc the full description of the item
+     * @param dollarValue the dollar value of the item
+     * @param category the category the item falls under
+     */
     public Item (String timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category) {
         this.timestamp = timestamp;
         this.location = location;
