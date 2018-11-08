@@ -27,11 +27,9 @@ public class RegistrationActivity extends AppCompatActivity {
     DatabaseReference databaseUsers;
     private FirebaseAuth mAuth;
 
-    private Button submit;
     private EditText usernameInput;
     private EditText passwordInput;
     private EditText emailInput;
-    private Button cancel;
     private Spinner accountType;
     public static Map<String, User> userDatabase = new HashMap<>();
     public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
@@ -71,12 +69,12 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        submit = (Button) findViewById(R.id.button_submit);
+        Button submit = (Button) findViewById(R.id.button_submit);
         usernameInput = (EditText) findViewById(R.id.username_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
         emailInput = (EditText) findViewById(R.id.email_input);
         accountType = (Spinner) findViewById(R.id.spinner);
-        cancel = (Button) findViewById(R.id.button_cancel);
+        Button cancel = (Button) findViewById(R.id.button_cancel);
 
         mAuth = FirebaseAuth.getInstance();
 

@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameInput;
     private EditText passwordInput;
-    private Button cancel;
     private FirebaseAuth mAuth;
     public static String username;
 
@@ -55,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         Button submit = (Button) findViewById(R.id.button_login2);
         usernameInput = (EditText) findViewById(R.id.username_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
-        cancel = (Button) findViewById(R.id.button_cancel);
+        Button cancel = (Button) findViewById(R.id.button_cancel);
         mAuth = FirebaseAuth.getInstance();
 
 

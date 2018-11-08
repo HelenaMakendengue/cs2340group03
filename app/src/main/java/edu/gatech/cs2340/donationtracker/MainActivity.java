@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         return db;
     }
 
-    private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerAdapter adapter;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         LocationReader();
 
         //Recycler Stuff
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
