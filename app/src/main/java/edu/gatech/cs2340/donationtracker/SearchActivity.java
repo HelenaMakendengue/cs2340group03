@@ -27,11 +27,12 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private ArrayList<Item> searched;
+    private List<Item> searched;
     private ArrayList<Item> master;
     private RecyclerView recyclerView;
     private ItemRecyclerAdapter adapter;
     public DatabaseReference databaseDonations;
+    private Search searcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class SearchActivity extends AppCompatActivity {
         spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locations.setAdapter(spinnerAdapter2);
 
+        //Set up searcher
+        searcher = new Search(master);
 
 
         //set up recycler view
@@ -108,41 +111,19 @@ public class SearchActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String searchLocation;
                 searched.clear();
 
                 if (locationActive.isChecked()) {
-                    if (textOption.isChecked()) {
-                        String term = searchBar.getText().toString().toLowerCase();
-
-                        for (Item item : master) {
-                            if (item.getShortDesc().toLowerCase().contains(term) && item.getLocation().getName().equals(locations.getSelectedItem())) {
-                                searched.add(item);
-                            }
-                        }
-                    } else if (spinnerOption.isChecked()) {
-                        for (Item item : master) {
-                            if (item.getCategory().equals(categories.getSelectedItem()) && item.getLocation().getName().equals(locations.getSelectedItem())) {
-                                searched.add(item);
-                            }
-                        }
-                    }
+                    searchLocation = (String) locations.getSelectedItem();
                 } else {
-                    if (textOption.isChecked()) {
-                        String term = searchBar.getText().toString().toLowerCase();
+                    searchLocation = null;
+                }
 
-                        for (Item item : master) {
-                            if (item.getShortDesc().toLowerCase().contains(term)) {
-                                searched.add(item);
-                            }
-                        }
-                    } else if (spinnerOption.isChecked()) {
-                        for (Item item : master) {
-                            if (item.getCategory().equals(categories.getSelectedItem())) {
-                                searched.add(item);
-                            }
-                        }
-                    }
-
+                if (textOption.isChecked()) {
+                    searched = searcher.searchByName(searchBar.getText().toString().toLowerCase(), searchLocation);
+                } else if (spinnerOption.isChecked()) {
+                    searched = searcher.searchByCategory((Category) categories.getSelectedItem(), searchLocation);
                 }
 
                 if (searched.size() == 0) {
