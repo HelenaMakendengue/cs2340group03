@@ -7,9 +7,9 @@ import edu.gatech.cs2340.donationtracker.Search;
 
 public class SearchTest {
 
-    @Before
-    public void setUp() {
-        Search search = new Search(master);
-    }
+//    @Before
+//    public void setUp() {
+//        Search search = new Search(master);
+//    }
 
 }
