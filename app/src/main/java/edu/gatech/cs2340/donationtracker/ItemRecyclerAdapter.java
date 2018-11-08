@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.donationtracker;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
-import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +47,11 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
 
             Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra("item_timeStamp", holder.item.getTimestamp());
+            intent.putExtra("item_locname", holder.item.getLocation().getName());
+            intent.putExtra("item_shortDesc", holder.item.getShortDesc());
             intent.putExtra("item_fullDesc", holder.item.getFullDesc());
-            intent.putExtra("item_category", holder.item.getCategory());
+            intent.putExtra("item_category", holder.item.getCategory().toString());
+            intent.putExtra("item_dollarValue", holder.item.getDollarValue().toString());
 
             context.startActivity(intent);
         });
