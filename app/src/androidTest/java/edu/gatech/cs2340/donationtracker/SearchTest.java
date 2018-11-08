@@ -2,7 +2,7 @@ package edu.gatech.cs2340.donationtracker;
 
 
 //import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import  android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,14 +21,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 
 
+@SuppressWarnings("PublicField")
 @RunWith(AndroidJUnit4.class)
 public class SearchTest {
 
     @Rule
-    public ActivityTestRule<RegistrationActivity> mActivityRule =
+    public final ActivityTestRule<RegistrationActivity> mActivityRule =
             new ActivityTestRule<>(RegistrationActivity.class);
 
 

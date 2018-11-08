@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+@SuppressWarnings("ALL")
 public class ItemDetailActivity extends AppCompatActivity {
 
     @Override

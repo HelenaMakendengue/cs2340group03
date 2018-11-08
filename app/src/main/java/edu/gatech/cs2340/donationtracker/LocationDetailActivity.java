@@ -3,7 +3,6 @@ package edu.gatech.cs2340.donationtracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,11 +20,11 @@ public class LocationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_detail);
-        Button seeInventoryBtn = (Button) findViewById(R.id.button_inventory);
-        Button addItemBtn = (Button) findViewById(R.id.button_addItem);
+        Button seeInventoryBtn = findViewById(R.id.button_inventory);
+        Button addItemBtn = findViewById(R.id.button_addItem);
 
         getIncomingIntent();
-        System.out.println("Location in LocationDetailActivity: " + locationName);
+//        System.out.println("Location in LocationDetailActivity: " + locationName);
 
 //        // programming button visibility
 //        if (need to get account type == AccountType.CUSTOMER) {
@@ -34,33 +33,27 @@ public class LocationDetailActivity extends AppCompatActivity {
 //            addItemBtn.setVisibility(View.VISIBLE);
 //        }
 
-        addItemBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationDetailActivity.this, AddItemActivity.class);
-                intent.putExtra("location_name", locationName);
-                intent.putExtra("location_name", locationName);
-                intent.putExtra("location_type",type);
-                intent.putExtra("location_longitude",longitude);
-                intent.putExtra("location_latitude", latitude);
-                intent.putExtra("location_address", address);
-                intent.putExtra("location_number", number);
-                startActivity(intent);
-            }
+        addItemBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LocationDetailActivity.this, AddItemActivity.class);
+            intent.putExtra("location_name", locationName);
+            intent.putExtra("location_name", locationName);
+            intent.putExtra("location_type",type);
+            intent.putExtra("location_longitude",longitude);
+            intent.putExtra("location_latitude", latitude);
+            intent.putExtra("location_address", address);
+            intent.putExtra("location_number", number);
+            startActivity(intent);
         });
 
-        seeInventoryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationDetailActivity.this, ItemScroller.class);
-                intent.putExtra("location_name", locationName);
-                intent.putExtra("location_type",type);
-                intent.putExtra("location_longitude",longitude);
-                intent.putExtra("location_latitude", latitude);
-                intent.putExtra("location_address", address);
-                intent.putExtra("location_number", number);
-                startActivity(intent);
-            }
+        seeInventoryBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LocationDetailActivity.this, ItemScroller.class);
+            intent.putExtra("location_name", locationName);
+            intent.putExtra("location_type",type);
+            intent.putExtra("location_longitude",longitude);
+            intent.putExtra("location_latitude", latitude);
+            intent.putExtra("location_address", address);
+            intent.putExtra("location_number", number);
+            startActivity(intent);
         });
     }
 

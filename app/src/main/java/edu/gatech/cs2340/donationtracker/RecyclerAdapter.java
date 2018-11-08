@@ -10,17 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.LocationViewHolder> {
 
-    private List<Location> locations;
+    private final List<Location> locations;
 
     //public DatabaseReference databaseLocations;
 
@@ -33,9 +29,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     @Override
     public LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.album_layout, parent, false);
-        LocationViewHolder locationViewHolder = new LocationViewHolder(view);
 
-        return locationViewHolder;
+        return new LocationViewHolder(view);
     }
 
     @Override
@@ -71,12 +66,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     }
 
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
-        public View mView;
-        public TextView locationName;
-        public TextView locationAddress;
-        public Location location;
+        final View mView;
+        final TextView locationName;
+        final TextView locationAddress;
+        Location location;
 
-        public LocationViewHolder(View itemView) {
+        LocationViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             locationName = itemView.findViewById(R.id.location_name);

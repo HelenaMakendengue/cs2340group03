@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class Model {
 
-    Map<Location, ArrayList> locationDB = new HashMap<>();
+    private final Map<Location, ArrayList> locationDB = new HashMap<>();
 
-    public static final Model instance = new Model();
+    private static final Model instance = new Model();
 
     public static Model getInstance() {
         return instance;
@@ -18,11 +18,13 @@ public class Model {
         locationDB.put(location, new ArrayList());
     }
 
+// --Commented out by Inspection START (11/8/18, 5:18 PM):
     public void addItem(Location location, Item item) {
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
         currentlist.add(item);
         locationDB.put(location, currentlist);
     }
+// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
 
     public Location findLocation(String locationTxt) {
         for (Location location: locationDB.keySet()) {

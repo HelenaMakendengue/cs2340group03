@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"ALL", "ChainedMethodCall"})
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapter.ItemViewHolder> {
 
-    private List<Item> items;
+    private final List<Item> items;
 
     public ItemRecyclerAdapter(List<Item> items) {
         this.items = items;
@@ -24,17 +24,19 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_item_scroller, parent, false);
-        ItemViewHolder itemViewHolder = new ItemViewHolder(view);
+        @SuppressWarnings("ChainedMethodCall") View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_item_scroller, parent, false);
 
-        return itemViewHolder;
+        return new ItemViewHolder(view);
     }
 
+    @SuppressWarnings("ChainedMethodCall")
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, final int position) {
 
         //bind data to widgets
+        //noinspection ChainedMethodCall
         holder.itemDesc.setText(items.get(position).getShortDesc());
+        //noinspection ChainedMethodCall,ChainedMethodCall
         holder.itemCategory.setText(items.get(position).getCategory().getRepresentation());
 
         //get location that corresponds to position
@@ -47,10 +49,12 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
 
             Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra("item_timeStamp", holder.item.getTimestamp());
+            //noinspection ChainedMethodCall
             intent.putExtra("item_locname", holder.item.getLocation().getName());
             intent.putExtra("item_shortDesc", holder.item.getShortDesc());
             intent.putExtra("item_fullDesc", holder.item.getFullDesc());
             intent.putExtra("item_category", holder.item.getCategory().toString());
+            //noinspection ChainedMethodCall
             intent.putExtra("item_dollarValue", holder.item.getDollarValue().toString());
 
             context.startActivity(intent);
@@ -63,12 +67,12 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public TextView itemDesc;
-        public TextView itemCategory;
-        public Item item;
+        final View mView;
+        final TextView itemDesc;
+        final TextView itemCategory;
+        Item item;
 
-        public ItemViewHolder(View itemView) {
+        ItemViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             itemDesc = itemView.findViewById(R.id.item_desc);

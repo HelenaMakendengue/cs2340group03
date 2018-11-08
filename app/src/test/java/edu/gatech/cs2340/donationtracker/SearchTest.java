@@ -1,15 +1,16 @@
 package edu.gatech.cs2340.donationtracker;
 
-import org.junit.Before;
-import edu.gatech.cs2340.donationtracker.Item;
-import edu.gatech.cs2340.donationtracker.Location;
-import edu.gatech.cs2340.donationtracker.Search;
-
-public class SearchTest {
-
-    @Before
-    public void setUp() {
-        Search search = new Search(master);
-    }
-
-}
+// --Commented out by Inspection START (11/8/18, 5:18 PM):
+//// --Commented out by Inspection START (11/8/18, 5:18 PM):
+//// --Commented out by Inspection START (11/8/18, 5:18 PM):
+// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
+////class SearchTest {
+////
+////    @Before
+////    public void setUp() {
+// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
+//        Search search = new Search(master);
+//    }
+//
+//}
+// --Commented out by Inspection STOP (11/8/18, 5:18 PM)

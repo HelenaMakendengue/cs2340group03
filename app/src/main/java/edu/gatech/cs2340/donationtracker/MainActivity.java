@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,23 +16,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    Model model = Model.getInstance();
+    private final Model model = Model.getInstance();
 
-    public static String TAG = "DONATION_TRACKER";
+    private static final String TAG = "DONATION_TRACKER";
 
-    DatabaseReference databaseLocations;
+    private DatabaseReference databaseLocations;
 
-    private static HashMap<Integer, Location> db = new HashMap<>();
-    public static HashMap<Integer, Location> getDb() {
-        return db;
+    private static final HashMap<Integer, Location> db = new HashMap<>();
+    public static Map<Integer,Location> getDb() {
+        return Collections.unmodifiableMap(db);
     }
-
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,27 +51,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Recycler Stuff
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(getDb());
+        RecyclerAdapter adapter = new RecyclerAdapter(getDb());
         recyclerView.setAdapter(adapter);
 
 
         //Button Event Listeners
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-            }
-        });
+        logoutBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WelcomeActivity.class)));
 
-        mapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MapActivity.class));
-            }
-        });
+        mapBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MapActivity.class)));
     }
 
     private void LocationReader() {
@@ -105,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 String address = ar[4] + ", " + ar[5] + ", " + ar[6] + " " + ar[7];
                 LocationType locationType;
 
-                if (ar[8].equals("Store")) {
+                if ("Store".equals(ar[8])) {
                     locationType = LocationType.STORE;
-                } else if (ar[8].equals("Drop Off")) {
+                } else if ("Drop Off".equals(ar[8])) {
                     locationType = LocationType.DROP_OFF_ONLY;
                 } else {
                     locationType = LocationType.WAREHOUSE;
@@ -118,14 +107,14 @@ public class MainActivity extends AppCompatActivity {
                 //new Location is created
                 Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
 
-                databaseLocations.child(id).setValue(newLocation);
+                databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
 
                 //storing new Location to our database
                 //generate hashcode with ar[0] and ar[1] field
                 db.put(ar[9].hashCode(), newLocation);
                 model.addLocation(newLocation);
 
-                System.out.println(newLocation);
+//                System.out.println(newLocation);
                 text = br.readLine();
             }
 

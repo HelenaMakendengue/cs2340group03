@@ -2,16 +2,16 @@ package edu.gatech.cs2340.donationtracker;
 
 public class Location {
 
-    String key;
-    String name;
-    String latitude;
-    String longitude;
-    String address;
-    LocationType type;
-    String phoneNumber;
-    String website;
+    private String key;
+    private String name;
+    private String latitude;
+    private String longitude;
+    private String address;
+    private LocationType type;
+    private String phoneNumber;
+    private String website;
 
-    public Location() {};
+//    public Location() {};
 
     /**
      * This method creates a location with the given parameters
