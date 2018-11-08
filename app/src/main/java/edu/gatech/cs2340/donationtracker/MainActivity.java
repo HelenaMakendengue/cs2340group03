@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         return db;
     }
 
-    private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerAdapter adapter;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         LocationReader();
 
         //Recycler Stuff
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
@@ -62,12 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Event Listeners
         logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
             }
         });
 
         mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
@@ -91,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
             //Reads past first line to prevent KEY location from being made...
             br.readLine();
-            String text;
+            String text = br.readLine();
 
-            while ((text = br.readLine()) != null) {
+            while (text != null) {
 
                 String[] ar = text.split(",");
 
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 model.addLocation(newLocation);
 
                 System.out.println(newLocation);
+                text = br.readLine();
             }
 
             br.close();

@@ -16,17 +16,13 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     private void getIncomingIntent() {
         String timeStamp = getIntent().getStringExtra("item_timeStamp");
-        String locName = getIntent().getStringExtra("item_locname");
-        String shortDesc = getIntent().getStringExtra("item_shortDesc");
         String fullDesc = getIntent().getStringExtra("item_fullDesc");
         String category = getIntent().getStringExtra("item_category");
-        String dollarVal = getIntent().getStringExtra("item_dollarValue");
 
-        setWidget(timeStamp, locName, shortDesc, fullDesc, category, dollarVal);
+        setWidget(timeStamp, fullDesc, category);
     }
 
-    private void setWidget(String timeStamp, String locName, String shortDesc, String fullDesc,
-                                                            String category, String dollarVal) {
+    private void setWidget(CharSequence timeStamp, CharSequence fullDesc, CharSequence category) {
 
         TextView item_timeStamp = findViewById(R.id.item_timeStamp);
         item_timeStamp.setText(timeStamp);
@@ -36,14 +32,5 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         TextView item_category = findViewById(R.id.item_category);
         item_category.setText(category);
-
-        TextView item_shortDesc = findViewById(R.id.item_shortDesc);
-        item_shortDesc.setText(shortDesc);
-
-        TextView item_dollarValue = findViewById(R.id.item_dollarValue);
-        item_dollarValue.setText(dollarVal);
-
-        TextView item_locName = findViewById(R.id.item_locname);
-        item_locName.setText(locName);
     }
 }

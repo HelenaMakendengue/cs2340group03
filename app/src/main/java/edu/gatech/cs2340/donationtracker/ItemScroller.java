@@ -23,7 +23,6 @@ public class ItemScroller extends AppCompatActivity {
     public ArrayList<Item> itemSubList;
     private String locationName;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     public DatabaseReference databaseDonations;
     public ItemRecyclerAdapter adapter;
 
@@ -67,13 +66,14 @@ public class ItemScroller extends AppCompatActivity {
 
         //Initially display a list with no items.
         recyclerView = findViewById(R.id.itemRecyclerView);
-        layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new ItemRecyclerAdapter(itemSubList);
         recyclerView.setAdapter(adapter);
 
         toSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(ItemScroller.this, SearchActivity.class));
             }

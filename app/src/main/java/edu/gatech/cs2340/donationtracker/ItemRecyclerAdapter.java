@@ -17,7 +17,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
 
     private List<Item> items;
 
-    public ItemRecyclerAdapter(ArrayList<Item> items) {
+    public ItemRecyclerAdapter(List<Item> items) {
         this.items = items;
 }
 

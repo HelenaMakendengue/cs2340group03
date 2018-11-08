@@ -27,13 +27,12 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private ArrayList<Item> searched;
+    private List<Item> searched;
     private ArrayList<Item> master;
-    private ArrayList<String> locationNames;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private ItemRecyclerAdapter adapter;
     public DatabaseReference databaseDonations;
+    private Search searcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +50,10 @@ public class SearchActivity extends AppCompatActivity {
 
         searched = new ArrayList<>();
         master = new ArrayList<>();
-        locationNames = new ArrayList<>();
-        textOption.setChecked(true);
+        ArrayList<String> locationNames = new ArrayList<>();
 
 
-        List<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
+        Iterable<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
 
         for (Location loc: buffer) {
             locationNames.add(loc.getName());
@@ -99,11 +97,13 @@ public class SearchActivity extends AppCompatActivity {
         spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locations.setAdapter(spinnerAdapter2);
 
+        //Set up searcher
+        searcher = new Search(master);
 
 
         //set up recycler view
         recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -111,41 +111,19 @@ public class SearchActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String searchLocation;
                 searched.clear();
 
                 if (locationActive.isChecked()) {
-                    if (textOption.isChecked()) {
-                        String term = searchBar.getText().toString().toLowerCase();
-
-                        for (Item item : master) {
-                            if (item.getShortDesc().toLowerCase().contains(term) && item.getLocation().getName().equals(locations.getSelectedItem())) {
-                                searched.add(item);
-                            }
-                        }
-                    } else if (spinnerOption.isChecked()) {
-                        for (Item item : master) {
-                            if (item.getCategory().equals(categories.getSelectedItem()) && item.getLocation().getName().equals(locations.getSelectedItem())) {
-                                searched.add(item);
-                            }
-                        }
-                    }
+                    searchLocation = (String) locations.getSelectedItem();
                 } else {
-                    if (textOption.isChecked()) {
-                        String term = searchBar.getText().toString().toLowerCase();
+                    searchLocation = null;
+                }
 
-                        for (Item item : master) {
-                            if (item.getShortDesc().toLowerCase().contains(term)) {
-                                searched.add(item);
-                            }
-                        }
-                    } else if (spinnerOption.isChecked()) {
-                        for (Item item : master) {
-                            if (item.getCategory().equals(categories.getSelectedItem())) {
-                                searched.add(item);
-                            }
-                        }
-                    }
-
+                if (textOption.isChecked()) {
+                    searched = searcher.searchByName(searchBar.getText().toString().toLowerCase(), searchLocation);
+                } else if (spinnerOption.isChecked()) {
+                    searched = searcher.searchByCategory((Category) categories.getSelectedItem(), searchLocation);
                 }
 
                 if (searched.size() == 0) {
