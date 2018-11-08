@@ -10,17 +10,10 @@
         android:id="@+id/button_login2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/button_regular"
+        android:backgroundTint="@color/background_wel"
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.785" />
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="298dp" />
 
     <Button
         android:id="@+id/button_cancel"
@@ -71,5 +64,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_google_signin_btn_icon_dark"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="354dp" />
 
 </android.support.constraint.ConstraintLayout>

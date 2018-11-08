@@ -21,8 +21,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button cancel;
     private FirebaseAuth mAuth;
     public static String username;
+    private Button google;
 
-    //firebase auth login
+
+    //firebase auth login -> email and password
     private void logIn(String user, String pass) {
         mAuth.signInWithEmailAndPassword(user, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         submit = (Button) findViewById(R.id.button_login2);
+        google = (Button) findViewById(R.id.google);
         usernameInput = (EditText) findViewById(R.id.username_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
         cancel = (Button) findViewById(R.id.button_cancel);
@@ -64,13 +67,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 String userName = usernameInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
-
-//                if (RegistrationActivity.userDatabase.containsKey(userName)
-//                        && RegistrationActivity.userDatabase.get(userName).getPassword().equals(password)) {
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-//                }
                 logIn(userName, password);
             }
         });
@@ -79,6 +75,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+            }
+        });
+
+        google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, GoogleAuthActivity.class));
             }
         });
     }
