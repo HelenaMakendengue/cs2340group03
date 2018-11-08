@@ -74,6 +74,7 @@ public class ItemScroller extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         toSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(ItemScroller.this, SearchActivity.class));
             }

@@ -62,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Event Listeners
         logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
             }
         });
 
         mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MapActivity.class));
             }

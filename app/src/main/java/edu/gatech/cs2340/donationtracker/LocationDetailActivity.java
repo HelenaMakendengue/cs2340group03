@@ -35,6 +35,7 @@ public class LocationDetailActivity extends AppCompatActivity {
 //        }
 
         addItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LocationDetailActivity.this, AddItemActivity.class);
                 intent.putExtra("location_name", locationName);
@@ -49,6 +50,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         });
 
         seeInventoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LocationDetailActivity.this, ItemScroller.class);
                 intent.putExtra("location_name", locationName);
