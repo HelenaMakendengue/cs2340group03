@@ -5,13 +5,56 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/item_timeStamp"
+        android:id="@+id/item_shortDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="Location:"
+        android:text="Location:"
+        tools:text="Location:" />
+
+    <TextView
+        android:id="@+id/item_locname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
         android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="Category:"
+        android:text="Category:"
+        tools:text="Category:" />
+
+    <TextView
+        android:id="@+id/item_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginLeft="10dp"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="Full Description:"
+        android:text="Full Description:"
+        tools:text="Full Description:" />
 
     <TextView
         android:id="@+id/item_fullDesc"
@@ -22,10 +65,40 @@
         android:textSize="25sp"/>
 
     <TextView
-        android:id="@+id/item_category"
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="Time Stamp:"
+        android:text="Time Stamp: "
+        tools:text="Time Stamp:" />
+
+
+    <TextView
+        android:id="@+id/item_timeStamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="Dollar Value"
+        android:text="Dollar Value "
+        tools:text="Dollar Value" />
+
+    <TextView
+        android:id="@+id/item_dollarValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_marginLeft="10dp"
         android:textSize="25sp"/>
+
+
 </LinearLayout>

@@ -53,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
 
             Intent intent = new Intent(context, LocationDetailActivity.class);
             intent.putExtra("location_name", holder.location.getName());
-            intent.putExtra("location_type",holder.location.getType());
+            intent.putExtra("location_type",holder.location.getType().toString());
             intent.putExtra("location_longitude",holder.location.getLongitude());
             intent.putExtra("location_latitude",holder.location.getLatitude());
             intent.putExtra("location_address",holder.location.getAddress());

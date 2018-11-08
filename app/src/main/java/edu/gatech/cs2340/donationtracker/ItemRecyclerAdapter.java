@@ -46,8 +46,11 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
 
             Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra("item_timeStamp", holder.item.getTimestamp());
+            intent.putExtra("item_locname", holder.item.getLocation().getName());
+            intent.putExtra("item_shortDesc", holder.item.getShortDesc());
             intent.putExtra("item_fullDesc", holder.item.getFullDesc());
-            intent.putExtra("item_category", holder.item.getCategory());
+            intent.putExtra("item_category", holder.item.getCategory().toString());
+            intent.putExtra("item_dollarValue", holder.item.getDollarValue().toString());
 
             context.startActivity(intent);
         });
