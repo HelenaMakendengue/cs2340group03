@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
             //Reads past first line to prevent KEY location from being made...
             br.readLine();
-            String text;
+            String text = br.readLine();
 
-            while ((text = br.readLine()) != null) {
+            while (text != null) {
 
                 String[] ar = text.split(",");
 
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 model.addLocation(newLocation);
 
                 System.out.println(newLocation);
+                text = br.readLine();
             }
 
             br.close();
