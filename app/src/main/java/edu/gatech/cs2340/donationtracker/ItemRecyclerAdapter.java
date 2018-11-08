@@ -11,10 +11,11 @@ import android.content.Intent;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapter.ItemViewHolder> {
 
-    private ArrayList<Item> items;
+    private List<Item> items;
 
     public ItemRecyclerAdapter(ArrayList<Item> items) {
         this.items = items;

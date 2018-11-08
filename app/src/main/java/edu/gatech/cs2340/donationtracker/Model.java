@@ -18,9 +18,9 @@ public class Model {
     }
 
     public void addItem(Location location, Item item) {
-        ArrayList currentlst = locationDB.get(location); // returns the arraylist
-        currentlst.add(item);
-        locationDB.put(location, currentlst);
+        ArrayList currentlist = locationDB.get(location); // returns the arraylist
+        currentlist.add(item);
+        locationDB.put(location, currentlist);
     }
 
     public Location findLocation(String locationTxt) {
