@@ -22,7 +22,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         setWidget(timeStamp, fullDesc, category);
     }
 
-    private void setWidget(String timeStamp, String fullDesc, String category) {
+    private void setWidget(CharSequence timeStamp, CharSequence fullDesc, CharSequence category) {
 
         TextView item_timeStamp = findViewById(R.id.item_timeStamp);
         item_timeStamp.setText(timeStamp);

@@ -54,7 +54,7 @@ public class SearchActivity extends AppCompatActivity {
         locationNames = new ArrayList<>();
 
 
-        List<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
+        Iterable<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
 
         for (Location loc: buffer) {
             locationNames.add(loc.getName());

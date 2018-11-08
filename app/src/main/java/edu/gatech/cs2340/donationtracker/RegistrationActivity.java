@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText emailInput;
     private Button cancel;
     private Spinner accountType;
-    public static HashMap<String, User> userDatabase = new HashMap<>();
+    public static Map<String, User> userDatabase = new HashMap<>();
     public static List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
 
 

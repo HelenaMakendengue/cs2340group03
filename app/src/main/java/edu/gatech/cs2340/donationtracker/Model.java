@@ -2,10 +2,11 @@ package edu.gatech.cs2340.donationtracker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Model {
 
-    HashMap<Location, ArrayList> locationDB = new HashMap<>();
+    Map<Location, ArrayList> locationDB = new HashMap<>();
 
     public static final Model instance = new Model();
 

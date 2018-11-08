@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.LocationViewHolder> {
 
@@ -22,7 +23,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
 
     //public DatabaseReference databaseLocations;
 
-    public RecyclerAdapter(HashMap<Integer, Location> locations) {
+    public RecyclerAdapter(Map<Integer, Location> locations) {
         this.locations = new ArrayList<>(locations.values());
         //this.databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
     }
