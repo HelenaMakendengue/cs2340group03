@@ -29,9 +29,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private ArrayList<Item> searched;
     private ArrayList<Item> master;
-    private ArrayList<String> locationNames;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private ItemRecyclerAdapter adapter;
     public DatabaseReference databaseDonations;
 
@@ -51,7 +49,7 @@ public class SearchActivity extends AppCompatActivity {
 
         searched = new ArrayList<>();
         master = new ArrayList<>();
-        locationNames = new ArrayList<>();
+        ArrayList<String> locationNames = new ArrayList<>();
 
 
         Iterable<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
@@ -102,7 +100,7 @@ public class SearchActivity extends AppCompatActivity {
 
         //set up recycler view
         recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 

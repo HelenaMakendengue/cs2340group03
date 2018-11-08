@@ -22,11 +22,10 @@ import java.util.ArrayList;
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ArrayList<Location> locationLst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        locationLst = new ArrayList<>();
+        ArrayList<Location> locationLst = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
