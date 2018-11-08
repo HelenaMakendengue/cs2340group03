@@ -15,11 +15,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.LocationViewHolder> {
 
-    private ArrayList<Location> locations;
+    private List<Location> locations;
 
     //public DatabaseReference databaseLocations;
 

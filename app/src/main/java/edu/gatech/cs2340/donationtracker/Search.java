@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Search {
-    ArrayList<Item> master;
+    Iterable<Item> master;
 
-    public Search(ArrayList<Item> master) {
+    public Search(Iterable<Item> master) {
         this.master = master;
     }
 
     public List<Item> searchByName(String term, String location) {
-        ArrayList<Item> searched = new ArrayList<>();
+        List<Item> searched = new ArrayList<>();
 
         if ("".equals(term)) {
             return searched;
@@ -35,7 +35,7 @@ public class Search {
     }
 
     public List<Item> searchByCategory(Category category, String location) {
-        ArrayList<Item> searched = new ArrayList<>();
+        List<Item> searched = new ArrayList<>();
 
         if (location == null) {
             for (Item item : master) {
