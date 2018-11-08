@@ -6,7 +6,7 @@ public class User {
     private String password;
     private boolean accountState;
     private String email;
-    private static AccountType accountType;
+    private AccountType accountType;
 
     /**
      * This method creates a user with the given parameters
