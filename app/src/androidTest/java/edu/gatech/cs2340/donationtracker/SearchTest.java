@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.donationtracker;
 
 
-import android.support.test.rule.ActivityTestRule;
+//import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
