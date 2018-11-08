@@ -52,6 +52,7 @@ public class SearchActivity extends AppCompatActivity {
         searched = new ArrayList<>();
         master = new ArrayList<>();
         locationNames = new ArrayList<>();
+        textOption.setChecked(true);
 
 
         List<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
