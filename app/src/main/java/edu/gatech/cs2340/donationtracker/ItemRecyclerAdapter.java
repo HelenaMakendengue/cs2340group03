@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.donationtracker;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,14 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
-import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapter.ItemViewHolder> {
 
-    private ArrayList<Item> items;
+    private List<Item> items;
 
     public ItemRecyclerAdapter(ArrayList<Item> items) {
         this.items = items;
