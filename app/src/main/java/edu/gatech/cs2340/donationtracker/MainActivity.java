@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         return Collections.unmodifiableMap(db);
     }
 
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

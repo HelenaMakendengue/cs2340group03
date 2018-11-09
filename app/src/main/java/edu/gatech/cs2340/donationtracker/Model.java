@@ -11,7 +11,7 @@ import java.util.Map;
 public class Model {
 
     private final Map<Location, ArrayList> locationDB = new HashMap<>();
-    private static final ArrayList<Location> modelDB = new ArrayList<>();
+    private static final List<Location> modelDB = new ArrayList<>();
 
     private static final Model instance = new Model();
 

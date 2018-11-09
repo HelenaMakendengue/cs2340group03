@@ -33,7 +33,6 @@ public class SearchTest {
         ArrayList<Item> master = new ArrayList<>();
 
         location1 = new Location(null, "Howie", null, null, null, null, null, null);
-        location2 = new Location(null, "CULC", null, null, null, null, null, null);
         location3 = new Location(null, "Garbage Can", null, null, null, null, null, null);
 
         shoe = new Item(null, location1, "Shoelace", null, 1.0, Category.Clothing);
@@ -75,7 +74,7 @@ public class SearchTest {
     @Test
     public void searchStringMultipleResultsNoLocation() {
         List<Item> searched;
-        ArrayList<Item> compare = new ArrayList<>();
+        List<Item> compare = new ArrayList<>();
         compare.add(shoe);
         compare.add(lamp);
         searched = search.searchByName("la", null);

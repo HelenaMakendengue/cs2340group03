@@ -118,9 +118,7 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         //search button clicked
-        searchButton.setOnClickListener(v -> {
-            searchPress();
-        });
+        searchButton.setOnClickListener(v -> searchPress());
 
 
     }

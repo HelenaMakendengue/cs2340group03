@@ -126,34 +126,13 @@ public class RegistrationActivity extends AppCompatActivity {
         } else if (userDatabase.containsKey(username)) {
             Toast.makeText(getApplicationContext(),
                     "Username taken, please try again", Toast.LENGTH_SHORT).show();
-        } else if ("Admin".equals(accountType.getSelectedItem().toString())
-                && password.contains("Ez7R")) {
-            // admin pass case
-            createAuth(username, password, email, AccountType.ADMIN);
-            startActivity(new Intent(RegistrationActivity.this,
-                    MainActivity.class));
         } else if ("Admin".equals(accountType.getSelectedItem().toString())) {
-            Toast.makeText(getApplicationContext(),
-                    "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
-        } else if ("Manager".equals(accountType.getSelectedItem().toString())
-                && password.contains("QffJ")) {
-            // manager pass case
-            createAuth(username, password, email, AccountType.MANAGER);
-            startActivity(new Intent(RegistrationActivity.this,
-                    MainActivity.class));
+            registerAdmin(username, password, email);
         } else if ("Manager".equals(accountType.getSelectedItem().toString())) {
-            Toast.makeText(getApplicationContext(),
-                    "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
+            registerManager(username, password, email);
         } else if ("Location Employee".equals(accountType.getSelectedItem().toString())
                 && password.contains("OIU8")) {
-            // location employee pass case
-            createAuth(username, password, email, AccountType.LOCATION_EMPLOYEE);
-            startActivity(new Intent(RegistrationActivity.this,
-                    MainActivity.class));
-        } else if ("Location Employee".equals(accountType.getSelectedItem().toString())) {
-            Toast.makeText(getApplicationContext(),
-                    "Location Employee Permissions Not Granted",
-                    Toast.LENGTH_SHORT).show();
+            registerLocEmployee(username, password, email);
         } else {
             // default - customer
             createAuth(username, password, email, AccountType.CUSTOMER);
@@ -161,14 +140,35 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void registerAdmin(String username, String password, String email) {
-
+        if (password.contains("Ez7R")) {
+            createAuth(username, password, email, AccountType.ADMIN);
+            startActivity(new Intent(RegistrationActivity.this,
+                    MainActivity.class));
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void registerManager(String username, String password, String email) {
-
+        if (password.contains("QffJ")) {
+            createAuth(username, password, email, AccountType.MANAGER);
+            startActivity(new Intent(RegistrationActivity.this,
+                    MainActivity.class));
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void registerLocEmployee(String username, String password, String email) {
-
+        if (password.contains("OIU8")) {
+            createAuth(username, password, email, AccountType.LOCATION_EMPLOYEE);
+            startActivity(new Intent(RegistrationActivity.this,
+                    MainActivity.class));
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Location Employee Permissions Not Granted", Toast.LENGTH_SHORT).show();
+        }
     }
 }
