@@ -15,7 +15,11 @@ public class Location {
     private String phoneNumber;
     private String website;
 
-    public Location() {};
+
+    /**
+     * Creates a location object with no parameters
+     */
+    public Location() {}
 
     /**
      * This method creates a location with the given parameters

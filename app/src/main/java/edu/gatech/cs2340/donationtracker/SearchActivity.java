@@ -33,9 +33,20 @@ public class SearchActivity extends AppCompatActivity {
 
     private List<Item> searched;
     private ArrayList<Item> master;
+    private ArrayList<String> locationNames;
+
     private RecyclerView recyclerView;
     private ItemRecyclerAdapter adapter;
     private Search searcher;
+    private EditText searchBar;
+    private Button searchButton;
+    private Spinner categories;
+    private Spinner locations;
+    private RadioButton textOption;
+    private RadioButton spinnerOption;
+    private CheckBox locationActive;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +54,8 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        EditText searchBar = findViewById(R.id.search_bar);
-        Button searchButton = findViewById(R.id.search_button);
-        Spinner categories = findViewById(R.id.category_search);
-        Spinner locations = findViewById(R.id.location_spinner);
-        RadioButton textOption = findViewById(R.id.text_option);
-        RadioButton spinnerOption = findViewById(R.id.spinner_option);
-        CheckBox locationActive = findViewById(R.id.location_check);
 
-        searched = new ArrayList<>();
-        master = new ArrayList<>();
-        ArrayList<String> locationNames = new ArrayList<>();
+        initialize();
 
 
         Iterable<Location> buffer = new ArrayList<>(MainActivity.getDb().values());
@@ -117,36 +119,54 @@ public class SearchActivity extends AppCompatActivity {
 
         //search button clicked
         searchButton.setOnClickListener(v -> {
-            @Nullable String searchLocation;
-            searched.clear();
-
-            if (locationActive.isChecked()) {
-                searchLocation = (String) locations.getSelectedItem();
-            } else {
-                searchLocation = null;
-            }
-
-            if (textOption.isChecked()) {
-                searched = searcher.searchByName(searchBar.getText().toString().toLowerCase()
-                        , searchLocation);
-            } else if (spinnerOption.isChecked()) {
-                searched = searcher.searchByCategory((Category) categories.getSelectedItem()
-                        , searchLocation);
-            }
-
-            if (searched.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "No Items Matched",
-                        Toast.LENGTH_LONG).show();
-                adapter = new ItemRecyclerAdapter(searched);
-                recyclerView.setAdapter(adapter);
-            } else {
-                //finish recyclerView
-                adapter = new ItemRecyclerAdapter(searched);
-                recyclerView.setAdapter(adapter);
-            }
+            searchPress();
         });
 
 
+    }
+
+    private void initialize() {
+        searchBar = findViewById(R.id.search_bar);
+        searchButton = findViewById(R.id.search_button);
+        categories = findViewById(R.id.category_search);
+        locations = findViewById(R.id.location_spinner);
+        textOption = findViewById(R.id.text_option);
+        spinnerOption = findViewById(R.id.spinner_option);
+        locationActive = findViewById(R.id.location_check);
+
+        searched = new ArrayList<>();
+        master = new ArrayList<>();
+        locationNames = new ArrayList<>();
+    }
+
+    private void searchPress() {
+        @Nullable String searchLocation;
+        searched.clear();
+
+        if (locationActive.isChecked()) {
+            searchLocation = (String) locations.getSelectedItem();
+        } else {
+            searchLocation = null;
+        }
+
+        if (textOption.isChecked()) {
+            searched = searcher.searchByName(searchBar.getText().toString().toLowerCase()
+                    , searchLocation);
+        } else if (spinnerOption.isChecked()) {
+            searched = searcher.searchByCategory((Category) categories.getSelectedItem()
+                    , searchLocation);
+        }
+
+        if (searched.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "No Items Matched",
+                    Toast.LENGTH_LONG).show();
+            adapter = new ItemRecyclerAdapter(searched);
+            recyclerView.setAdapter(adapter);
+        } else {
+            //finish recyclerView
+            adapter = new ItemRecyclerAdapter(searched);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
 }

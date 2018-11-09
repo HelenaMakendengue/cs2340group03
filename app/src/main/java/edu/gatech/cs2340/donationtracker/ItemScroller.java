@@ -85,9 +85,5 @@ public class ItemScroller extends AppCompatActivity {
         locationName = getIntent().getStringExtra("location_name");
     }
 
-// --Commented out by Inspection START (11/8/18, 5:18 PM):
-    public ArrayList<Item> getItemSubList() {
-        return itemSubList;
-    }
-// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
+
 }

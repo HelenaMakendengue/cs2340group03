@@ -18,7 +18,7 @@ import static junit.framework.TestCase.assertEquals;
  */
 public class SearchTest {
 
-    Location location1;
+    private Location location1;
     Location location2;
     private Location location3;
 

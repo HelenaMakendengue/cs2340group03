@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final Model model = Model.getInstance();
 
-    static final String TAG = "DONATION_TRACKER";
+    private static final String TAG = "DONATION_TRACKER";
 
     private DatabaseReference databaseLocations;
     private static final Map<Integer, Location> db = new HashMap<>();

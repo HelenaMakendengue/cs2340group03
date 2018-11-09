@@ -111,47 +111,64 @@ public class RegistrationActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();
 
-            if ("".equals(username) || "".equals(password) || "".equals(email)) {
-                Toast.makeText(getApplicationContext(),
-                        "One or more empty field(s)", Toast.LENGTH_SHORT).show();
-            } else if (userDatabase.containsKey(username)) {
-                Toast.makeText(getApplicationContext(),
-                        "Username taken, please try again", Toast.LENGTH_SHORT).show();
-            } else if ("Admin".equals(accountType.getSelectedItem().toString())
-                    && password.contains("Ez7R")) {
-                // admin pass case
-                createAuth(username, password, email, AccountType.ADMIN);
-                startActivity(new Intent(RegistrationActivity.this,
-                        MainActivity.class));
-            } else if ("Admin".equals(accountType.getSelectedItem().toString())) {
-                Toast.makeText(getApplicationContext(),
-                        "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
-            } else if ("Manager".equals(accountType.getSelectedItem().toString())
-                    && password.contains("QffJ")) {
-                // manager pass case
-                createAuth(username, password, email, AccountType.MANAGER);
-                startActivity(new Intent(RegistrationActivity.this,
-                        MainActivity.class));
-            } else if ("Manager".equals(accountType.getSelectedItem().toString())) {
-                Toast.makeText(getApplicationContext(),
-                        "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
-            } else if ("Location Employee".equals(accountType.getSelectedItem().toString())
-                    && password.contains("OIU8")) {
-                // location employee pass case
-                createAuth(username, password, email, AccountType.LOCATION_EMPLOYEE);
-                startActivity(new Intent(RegistrationActivity.this,
-                        MainActivity.class));
-            } else if ("Location Employee".equals(accountType.getSelectedItem().toString())) {
-                Toast.makeText(getApplicationContext(),
-                        "Location Employee Permissions Not Granted",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // default - customer
-                createAuth(username, password, email, AccountType.CUSTOMER);
-            }
+            register(username, password, email);
+
         });
 
         cancel.setOnClickListener(v -> startActivity(new Intent
                 (RegistrationActivity.this, WelcomeActivity.class)));
+    }
+
+    private void register(String username, String password, String email) {
+        if ("".equals(username) || "".equals(password) || "".equals(email)) {
+            Toast.makeText(getApplicationContext(),
+                    "One or more empty field(s)", Toast.LENGTH_SHORT).show();
+        } else if (userDatabase.containsKey(username)) {
+            Toast.makeText(getApplicationContext(),
+                    "Username taken, please try again", Toast.LENGTH_SHORT).show();
+        } else if ("Admin".equals(accountType.getSelectedItem().toString())
+                && password.contains("Ez7R")) {
+            // admin pass case
+            createAuth(username, password, email, AccountType.ADMIN);
+            startActivity(new Intent(RegistrationActivity.this,
+                    MainActivity.class));
+        } else if ("Admin".equals(accountType.getSelectedItem().toString())) {
+            Toast.makeText(getApplicationContext(),
+                    "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
+        } else if ("Manager".equals(accountType.getSelectedItem().toString())
+                && password.contains("QffJ")) {
+            // manager pass case
+            createAuth(username, password, email, AccountType.MANAGER);
+            startActivity(new Intent(RegistrationActivity.this,
+                    MainActivity.class));
+        } else if ("Manager".equals(accountType.getSelectedItem().toString())) {
+            Toast.makeText(getApplicationContext(),
+                    "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
+        } else if ("Location Employee".equals(accountType.getSelectedItem().toString())
+                && password.contains("OIU8")) {
+            // location employee pass case
+            createAuth(username, password, email, AccountType.LOCATION_EMPLOYEE);
+            startActivity(new Intent(RegistrationActivity.this,
+                    MainActivity.class));
+        } else if ("Location Employee".equals(accountType.getSelectedItem().toString())) {
+            Toast.makeText(getApplicationContext(),
+                    "Location Employee Permissions Not Granted",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            // default - customer
+            createAuth(username, password, email, AccountType.CUSTOMER);
+        }
+    }
+
+    private void registerAdmin(String username, String password, String email) {
+
+    }
+
+    private void registerManager(String username, String password, String email) {
+
+    }
+
+    private void registerLocEmployee(String username, String password, String email) {
+
     }
 }

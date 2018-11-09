@@ -2,6 +2,7 @@ package edu.gatech.cs2340.donationtracker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,15 +10,10 @@ import java.util.Map;
  */
 public class Model {
 
-    /**
-     * A no-arg constructor
-     */
-    public Model() { }
+    private final Map<Location, ArrayList> locationDB = new HashMap<>();
+    private static final ArrayList<Location> modelDB = new ArrayList<>();
 
-    private Map<Location, ArrayList> locationDB = new HashMap<>();
-    private static ArrayList<Location> modelDB = new ArrayList<>();
-
-    public static final Model instance = new Model();
+    private static final Model instance = new Model();
 
     /**
      * Getter for the model
@@ -49,8 +45,8 @@ public class Model {
      * @return boolean true if item is valid
      */
     public boolean addItem(Location location, Item item) {
-        if (item.getShortDesc().toString().length() == 0 || item.getCategory() == null
-                || item.getLocation() == null) {
+        if ((item.getShortDesc().isEmpty()) || (item.getCategory() == null)
+                || (item.getLocation() == null)) {
             return false;
         }
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
@@ -97,7 +93,12 @@ public class Model {
                 "www.knfb.org"));
     }
 
-    public static ArrayList<Location> getModelDB() {
+
+    /**
+     * A method to get a list of locations in the model.
+     * @return returns a list of all locations
+     */
+    public static List<Location> getModelDB() {
         return modelDB;
     }
 }
