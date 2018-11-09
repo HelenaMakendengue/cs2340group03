@@ -36,7 +36,7 @@ public class Model {
 
     public void addItem(Location location, Item item) {
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
-        currentlist.add(item);
+        currentlist.add((Item) item);
         locationDB.put(location, currentlist);
     }
 
@@ -79,12 +79,16 @@ public class Model {
                 String address = ar[4] + ", " + ar[5] + ", " + ar[6] + " " + ar[7];
                 LocationType locationType;
 
-                if (ar[8].equals("Store")) {
-                    locationType = LocationType.STORE;
-                } else if (ar[8].equals("Drop Off")) {
-                    locationType = LocationType.DROP_OFF_ONLY;
-                } else {
-                    locationType = LocationType.WAREHOUSE;
+                switch (ar[8]) {
+                    case "Store":
+                        locationType = LocationType.STORE;
+                        break;
+                    case "Drop Off":
+                        locationType = LocationType.DROP_OFF_ONLY;
+                        break;
+                    default:
+                        locationType = LocationType.WAREHOUSE;
+                        break;
                 }
 
                 //Firebase Stuff

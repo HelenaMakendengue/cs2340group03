@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
+/**
+ * The welcome activity initiates the welcome screen.
+ * Links to login or registration activity.
+ */
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override

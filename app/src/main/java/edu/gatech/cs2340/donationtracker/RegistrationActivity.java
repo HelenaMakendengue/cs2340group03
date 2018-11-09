@@ -21,6 +21,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+
+/**
+ * The registration activity initiates the registration screen.
+ * Links to Main Activity if registration user in firebase is successful,
+ * goes back to welcome activity if pressed back.
+ */
 public class RegistrationActivity extends AppCompatActivity {
 
     private DatabaseReference databaseUsers;
@@ -33,8 +39,14 @@ public class RegistrationActivity extends AppCompatActivity {
     private static final Map<String, User> userDatabase = new HashMap<>();
     private static final List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
 
-
-    // String loginName, String password, boolean accountState, String contactInfo, AccountType accountType
+    /**
+     * This method creates a user in firebase database with the given parameters
+     *
+     * @param name the loginName of the user
+     * @param pass the password of the user
+     * @param email the email address of the user
+     * @param type the account type of the user
+     */
     private User createUser(String name, String pass, String email, AccountType type) {
 
         String id = databaseUsers.push().getKey();
@@ -43,6 +55,14 @@ public class RegistrationActivity extends AppCompatActivity {
         return newUser;
     }
 
+    /**
+     * This method creates a user in firebase authentication with the given parameters
+     *
+     * @param user the username of the user
+     * @param pass the password of the user
+     * @param email the email address of the user
+     * @param type the account type of the user
+     */
     private void createAuth(String user, String pass, String email, AccountType type) {
         mAuth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, task -> {

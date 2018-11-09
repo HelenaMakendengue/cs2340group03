@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final Model model = Model.getInstance();
 
-    private static final String TAG = "DONATION_TRACKER";
+    static final String TAG = "DONATION_TRACKER";
 
     private DatabaseReference databaseLocations;
 

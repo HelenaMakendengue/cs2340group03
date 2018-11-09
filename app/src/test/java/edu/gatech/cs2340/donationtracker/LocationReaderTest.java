@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.donationtracker;
 
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,7 +12,7 @@ import static org.junit.Assert.*;
  */
 public class LocationReaderTest {
 
-    private int locationCount = 0;
+    private final int locationCount = 0;
 
     @Test
     public void properLocationCount() {
