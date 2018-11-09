@@ -37,25 +37,37 @@ public class Model {
 
     /**
      * Getter for the model
+     * @return the instance for model
      */
     public static Model getInstance() {
         return instance;
     }
 
     /**
-     * @param location the location object ready
-     * Represents an user object.
+     * Add a new location.
+     * @param location the location object to be added
      */
     public void addLocation(Location location) {
         locationDB.put(location, new ArrayList());
     }
 
+
+    /**
+     * Add a new item to a selected location
+     * @param item the item to be added
+     * @param location the location where the item is added to
+     */
     public void addItem(Location location, Item item) {
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
         currentlist.add((Item) item);
         locationDB.put(location, currentlist);
     }
 
+    /**
+     * Find a location matching the text input
+     * @param locationTxt the text entered in the search bar
+     * @return the location if search result matches, else returns null
+     */
     public Location findLocation(String locationTxt) {
         for (Location location: locationDB.keySet()) {
             if (location.getName().equals(locationTxt)) {
