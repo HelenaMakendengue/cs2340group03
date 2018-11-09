@@ -1,10 +1,7 @@
 package edu.gatech.cs2340.donationtracker;
 
-import java.util.ArrayList;
-
-public class Item {
-
-    private static ArrayList<Item> itemList = new ArrayList<>();
+@SuppressWarnings("ALL")
+class Item {
 
     private String timestamp;
     private Location location;
@@ -44,15 +41,17 @@ public class Item {
         return timestamp;
     }
 
-    /**
-     * This method sets the timestamp for the item's
-     * creation.
-     *
-     * @param timestamp a time in which the item was created
-     */
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+// --Commented out by Inspection START (11/8/18, 5:18 PM):
+//    /**
+//     * This method sets the timestamp for the item's
+//     * creation.
+//     *
+//     * @param timestamp a time in which the item was created
+//     */
+//    public void setTimestamp(String timestamp) {
+//        this.timestamp = timestamp;
+//    }
+// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
 
     /**
      * The method gets and returns the location
@@ -64,17 +63,20 @@ public class Item {
         return location;
     }
 
-    /**
-     * This method sets the location for the item.
-     *
-     * @param location a location at which the item
-     *                 is available
-     */
-    public void setLocation(Location location) { this.location = location; }
+// --Commented out by Inspection START (11/8/18, 5:18 PM):
+//    /**
+//     * This method sets the location for the item.
+//     *
+//     * @param location a location at which the item
+//     *                 is available
+//     */
+//    public void setLocation(Location location) { this.location = location; }
+// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
 
     /**
      * This method gets and returns the short
      * description about the item.
+ --Commented out by Inspection START (11/8/18, 5:18 PM):
      *
      * @return the shortDesc about the item
      */
@@ -86,7 +88,9 @@ public class Item {
      * This method sets the short description about an item
      *
      * @param shortDesc a short description about an item
+ --Commented out by Inspection STOP (11/8/18, 5:18 PM)
      */
+    @SuppressWarnings("unused")
     public void setShortDesc(String shortDesc) { this.shortDesc = shortDesc; }
 
     /**
@@ -105,6 +109,7 @@ public class Item {
      *
      * @param fullDesc a full description about an item
      */
+    @SuppressWarnings("unused")
     public void setFullDesc(String fullDesc) {
         this.fullDesc = fullDesc;
     }
@@ -124,6 +129,7 @@ public class Item {
      *
      * @param dollarValue a dollar value for the item
      */
+    @SuppressWarnings("unused")
     public void setDollarValue(double dollarValue) {
         this.dollarValue = dollarValue;
     }
@@ -136,24 +142,6 @@ public class Item {
      */
     public Category getCategory() {
         return category;
-    }
-
-    /**
-     * This method sets the category that the item falls under
-     *
-     * @param category a category that the item falls under
-     */
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    /**
-     * This method returns a list of store items
-     *
-     * @return itemList
-     */
-    public static ArrayList<Item> getItemList() {
-        return itemList;
     }
 
     /**

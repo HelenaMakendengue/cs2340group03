@@ -34,7 +34,8 @@
 //    @Test
 //    public void checkAllNull() {
 //        onView(withId(R.id.button_submit)).perform(click());
-//        onView(withText("One or more empty field(s)")).inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+//        onView(withText("One or more empty field(s)")).inRoot(withDecorView
+// (not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
 //    }
 //
 //    @Test
@@ -54,7 +55,8 @@
 //        onData(allOf(is(instanceOf(String.class)), is("Admin"))).perform(click());
 //
 //        //check toast
-//        onView(withText("Admin Permissions Not Granted")).inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+//        onView(withText("Admin Permissions Not Granted")).inRoot(withDecorView(not(mActivityRule.
+//      getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
 //    }
 //
 //    @Test
@@ -66,7 +68,8 @@
 //        onData(allOf(is(instanceOf(String.class)), is("Admin"))).perform(click());
 //
 //        //check toast
-//        onView(withText("Authentication Failed")).inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+//        onView(withText("Authentication Failed")).inRoot(withDecorView(not(mActivityRule
+//          .getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
 //    }
 //
 //

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,26 +16,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
-import android.content.Context;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
 
+/**
+ * The main activity of the application. Shows all locations
+ * and allows users to connect to the Location Detail Activity
+ * by tapping on a location as well as back to the welcome
+ * screen by pressing the logout button.
+ */
 public class MainActivity extends AppCompatActivity {
 
-    Model model = Model.getInstance();
+    private final Model model = Model.getInstance();
 
-    public static String TAG = "DONATION_TRACKER";
+    static final String TAG = "DONATION_TRACKER";
 
-    DatabaseReference databaseLocations;
+    private DatabaseReference databaseLocations;
+    private static final Map<Integer, Location> db = new HashMap<>();
 
-    private static HashMap<Integer, Location> db = new HashMap<>();
-    public static HashMap<Integer, Location> getDb() {
-        return db;
-    }
-
-    private static ArrayList<Location> jUnitDB = new ArrayList<>();
-    public static ArrayList<Location> getJUnitDB() {
-        return jUnitDB;
+    /**
+     * A method for accessing the in-app database
+     * @return the database
+     */
+    public static Map<Integer,Location> getDb() {
+        return Collections.unmodifiableMap(db);
     }
 
     private RecyclerView.LayoutManager layoutManager;
@@ -59,30 +64,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Recycler Stuff
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(getDb());
+        RecyclerAdapter adapter = new RecyclerAdapter(getDb());
         recyclerView.setAdapter(adapter);
 
 
         //Button Event Listeners
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-            }
-        });
+        logoutBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,
+                WelcomeActivity.class)));
 
-        mapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MapActivity.class));
-            }
-        });
+        mapBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,
+                MapActivity.class)));
     }
 
-    public void LocationReader() {
+    /**
+     * A method that takes in the csv file in the resources and adds them as location
+     * objects to the database.
+     */
+    private void LocationReader() {
 
         try {
 
@@ -91,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
             //From here we probably should call a model method and pass the InputStream
             //Wrap it in a BufferedReader so that we get the readLine() method
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream,
+                    StandardCharsets.UTF_8));
 
 
             //Marks the start of the CSV file
@@ -112,29 +114,32 @@ public class MainActivity extends AppCompatActivity {
                 String address = ar[4] + ", " + ar[5] + ", " + ar[6] + " " + ar[7];
                 LocationType locationType;
 
-                if (ar[8].equals("Store")) {
-                    locationType = LocationType.STORE;
-                } else if (ar[8].equals("Drop Off")) {
-                    locationType = LocationType.DROP_OFF_ONLY;
-                } else {
-                    locationType = LocationType.WAREHOUSE;
+                switch (ar[8]) {
+                    case "Store":
+                        locationType = LocationType.STORE;
+                        break;
+                    case "Drop Off":
+                        locationType = LocationType.DROP_OFF_ONLY;
+                        break;
+                    default:
+                        locationType = LocationType.WAREHOUSE;
+                        break;
                 }
 
                 String id = databaseLocations.push().getKey();
 
                 //new Location is created
-                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
+                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address,
+                        locationType, ar[9], ar[10]);
 
-                jUnitDB.add(newLocation);
-
-                databaseLocations.child(id).setValue(newLocation);
+                databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
 
                 //storing new Location to our database
                 //generate hashcode with ar[0] and ar[1] field
                 db.put(ar[9].hashCode(), newLocation);
                 model.addLocation(newLocation);
 
-                System.out.println(newLocation);
+//                System.out.println(newLocation);
                 text = br.readLine();
             }
 

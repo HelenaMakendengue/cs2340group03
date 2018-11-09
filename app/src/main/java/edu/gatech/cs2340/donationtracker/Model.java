@@ -1,20 +1,17 @@
 package edu.gatech.cs2340.donationtracker;
 
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import android.content.Context;
 
+/**
+ * Regulates the object contract and how they are stored.
+ */
 public class Model {
 
-    private Context context;
-
+    /**
+     * A no-arg constructor
+     */
     public Model() { }
 
     private Map<Location, ArrayList> locationDB = new HashMap<>();
@@ -22,21 +19,47 @@ public class Model {
 
     public static final Model instance = new Model();
 
-
+    /**
+     * Getter for the model
+     * @return the instance for model
+     */
     public static Model getInstance() {
         return instance;
     }
 
+    /**
+     * Add a new location.
+     * @param location the location object to be added
+     */
     public void addLocation(Location location) {
         locationDB.put(location, new ArrayList());
     }
 
-    public void addItem(Location location, Item item) {
+    /**
+     * Add a new item to a selected location
+     * @param item the item to be added
+     * @param location the location where the item is added to
+     * @return boolean true if item is valid
+     */
+    public boolean addItem(Location location, Item item) {
+        if (item.getShortDesc().toString().length() == 0 || item.getCategory() == null
+                || item.getLocation() == null) {
+            return false;
+        }
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
+        if (currentlist == null) {
+            currentlist = new ArrayList();
+        }
         currentlist.add(item);
         locationDB.put(location, currentlist);
+        return true;
     }
 
+    /**
+     * Find a location matching the text input
+     * @param locationTxt the text entered in the search bar
+     * @return the location if search result matches, else returns null
+     */
     public Location findLocation(String locationTxt) {
         for (Location location: locationDB.keySet()) {
             if (location.getName().equals(locationTxt)) {
