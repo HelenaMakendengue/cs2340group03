@@ -1,6 +1,6 @@
 package edu.gatech.cs2340.donationtracker;
 
-public class SearchTest {
+class SearchTest {
 
 //    @Before
 //    public void setUp() {

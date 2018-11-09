@@ -15,6 +15,7 @@ import static org.junit.Assert.assertNull;
  * If not present, null is returned
  * Created by Mahima Chander on 11/08/18.
  */
+@SuppressWarnings("JavaDoc")
 public class findLocationTest {
 
     private Model testModel;
@@ -22,6 +23,7 @@ public class findLocationTest {
     private Location loc2;
     private Location loc3;
 
+    @SuppressWarnings("JavaDoc")
     @Before
     public void setUp() {
         testModel = new Model();
@@ -36,6 +38,7 @@ public class findLocationTest {
                 "(455)194-2946", "location3.org");
     }
 
+    @SuppressWarnings("JavaDoc")
     @Test
     public void validLocation() {
         testModel.addLocation(loc1);
@@ -48,6 +51,7 @@ public class findLocationTest {
                 testModel.findLocation(loc1_name));
     }
 
+    @SuppressWarnings("JavaDoc")
     @Test
     public void invalidLocation() {
         testModel.addLocation(loc1);

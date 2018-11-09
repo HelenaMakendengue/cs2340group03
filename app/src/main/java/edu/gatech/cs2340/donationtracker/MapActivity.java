@@ -18,6 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
+/**
+ * The MapActivity initiates the google map display screen,
+ * as well as the pins representing each locations in the
+ * database
+ */
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -57,7 +62,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         FirebaseDatabase.getInstance().getReference("locations").addValueEventListener(new ValueEventListener() {
-
             //public ArrayList<Item> itemSubList;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

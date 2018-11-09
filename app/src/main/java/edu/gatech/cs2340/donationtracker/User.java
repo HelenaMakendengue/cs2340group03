@@ -3,7 +3,7 @@ package edu.gatech.cs2340.donationtracker;
 /**
  * Represents an user object.
  */
-public class User {
+class User {
 
     private String loginName;
     private String password;

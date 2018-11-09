@@ -11,25 +11,41 @@ import java.util.HashMap;
 import java.util.Map;
 import android.content.Context;
 
+/**
+ * Regulates the object contract and how they are stored.
+ */
 public class Model {
 
     private Context context;
 
+    /**
+     * A no-arg constructor
+     */
     public Model() { }
 
+    /**
+     * A constructor with one param
+     * @param current the current context
+     */
     public Model(Context current) {
         this.context = current;
     }
 
-    Map<Location, ArrayList> locationDB = new HashMap<>();
+    private final Map<Location, ArrayList> locationDB = new HashMap<>();
 
     public static final Model instance = new Model();
 
-
+    /**
+     * Getter for the model
+     */
     public static Model getInstance() {
         return instance;
     }
 
+    /**
+     * @param location the location object ready
+     * Represents an user object.
+     */
     public void addLocation(Location location) {
         locationDB.put(location, new ArrayList());
     }
@@ -107,7 +123,7 @@ public class Model {
                 //JUnit written for this method
                 addLocation(newLocation);
 
-                System.out.println(newLocation);
+//                System.out.println(newLocation);
                 text = br.readLine();
             }
 
