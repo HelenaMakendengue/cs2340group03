@@ -1,39 +1,23 @@
 package edu.gatech.cs2340.donationtracker;
 
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import android.content.Context;
 
 /**
  * Regulates the object contract and how they are stored.
  */
-@SuppressWarnings("ALL")
 public class Model {
-
-    private Context context;
 
     /**
      * A no-arg constructor
      */
     public Model() { }
 
-    /**
-     * A constructor with one param
-     * @param current the current context
-     */
-    public Model(Context current) {
-        this.context = current;
-    }
-    private final Map<Location, ArrayList> locationDB = new HashMap<>();
+    private Map<Location, ArrayList> locationDB = new HashMap<>();
+    private static ArrayList<Location> modelDB = new ArrayList<>();
 
-    private static final Model instance = new Model();
+    public static final Model instance = new Model();
 
     /**
      * Getter for the model
@@ -44,6 +28,13 @@ public class Model {
     }
 
     /**
+     * Getter for locationDB
+     * @return the locationDB
+     */
+    public Map<Location, ArrayList> getLocationDB() {
+        return locationDB;
+    }
+    /**
      * Add a new location.
      * @param location the location object to be added
      */
@@ -51,16 +42,24 @@ public class Model {
         locationDB.put(location, new ArrayList());
     }
 
-
     /**
      * Add a new item to a selected location
      * @param item the item to be added
      * @param location the location where the item is added to
+     * @return boolean true if item is valid
      */
-    public void addItem(Location location, Item item) {
+    public boolean addItem(Location location, Item item) {
+        if (item.getShortDesc().toString().length() == 0 || item.getCategory() == null
+                || item.getLocation() == null) {
+            return false;
+        }
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
+        if (currentlist == null) {
+            currentlist = new ArrayList();
+        }
         currentlist.add(item);
         locationDB.put(location, currentlist);
+        return true;
     }
 
     /**
@@ -77,74 +76,28 @@ public class Model {
         return null;
     }
 
-    private void LocationReaderModel() {
+    public static void LocationReaderModel() {
+        modelDB.add(new Location("1", "AFD Station", "4,33.75416", "-84.37742",
+                "309 EDGEWOOD AVE SE, Atlanta, GA 30332", LocationType.DROP_OFF_ONLY, "(404) 555 - 3456",
+                "www.afd04.atl.ga"));
+        modelDB.add(new Location("2", "BOYS & GILRS CLUB W.W. WOOLFOLK", "33.73182", "-84.43971",
+                "1642 RICHLAND RD, Atlanta, GA 30332", LocationType.STORE, "(404) 555 - 1234",
+                "www.bgc.wool.ga"));
+        modelDB.add(new Location("3", "PATHWAY UPPER ROOM CHRISTIAN MINISTRIES", "33.70866", "-84.41853",
+                "683 SYLVAN RD, Atlanta, GA 30332", LocationType.WAREHOUSE, "(404) 555 - 5432",
+                "www.pathways.org"));
+        modelDB.add(new Location("4", "PAVILION OF HOPE INC", "33.80129", "-84.25537",
+                "3558 EAST PONCE DE LEON AVE, SCOTTDALE, GA 30079", LocationType.WAREHOUSE, "(404) 555 - 8765",
+                "www.pathways.org"));
+        modelDB.add(new Location("5", "D&D CONVENIENCE STORE", "33.71747", "-84.2521",
+                "2426 COLUMBIA DRIVE, DECATUR, GA 30034", LocationType.DROP_OFF_ONLY, "(404) 555 - 9876",
+                "www.ddconv.com"));
+        modelDB.add(new Location("6", "KEEP NORTH FULTON BEAUTIFUL", "33.96921", "-84.3688",
+                "470 MORGAN FALLS RD, Sandy Springs, GA 30302", LocationType.STORE, "(770) 555 - 7321",
+                "www.knfb.org"));
+    }
 
-        try {
-
-            //Open a stream on the raw file
-            InputStream inputStream = context.getResources().openRawResource(R.raw.locationdata);
-
-            //From here we probably should call a model method and pass the InputStream
-            //Wrap it in a BufferedReader so that we get the readLine() method
-            BufferedReader br =
-                    new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-
-            //Marks the start of the CSV file
-            br.mark(1000);
-
-            //Reads past first line to prevent KEY location from being made...
-            br.readLine();
-
-            String text = br.readLine();
-
-            while (text != null) {
-
-                String[] ar = text.split(",");
-
-                for (int i = 0; i < ar.length; i++) {
-                    ar[i] = ar[i].trim();
-                }
-
-                String address = ar[4] + ", " + ar[5] + ", " + ar[6] + " " + ar[7];
-                LocationType locationType;
-
-                switch (ar[8]) {
-                    case "Store":
-                        locationType = LocationType.STORE;
-                        break;
-                    case "Drop Off":
-                        locationType = LocationType.DROP_OFF_ONLY;
-                        break;
-                    default:
-                        locationType = LocationType.WAREHOUSE;
-                        break;
-                }
-
-                //Firebase Stuff
-                //String id = databaseLocations.push().getKey();
-
-                //new Location is created
-                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3],
-                        address, locationType, ar[9], ar[10]);
-
-                //Firebase Stuff
-                //databaseLocations.child(id).setValue(newLocation);
-
-                //storing new Location to our database
-                //generate hashcode with ar[0] and ar[1] field
-                MainActivity.getDb().put(ar[9].hashCode(), newLocation);
-
-                //JUnit written for this method
-                addLocation(newLocation);
-
-//                System.out.println(newLocation);
-                text = br.readLine();
-            }
-
-            br.close();
-
-        } catch (IOException e) {
-            Log.e(MainActivity.TAG, "error reading assets", e);
-        }
+    public static ArrayList<Location> getModelDB() {
+        return modelDB;
     }
 }

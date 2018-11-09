@@ -37,8 +37,8 @@ public class ItemScroller extends AppCompatActivity {
         Button toSearch = findViewById(R.id.button_toSearch);
 
         getIncomingIntent();
-        //Model model = Model.getInstance();
-        //itemSubList = model.locationDB.get(model.findLocation(locationName));
+        Model model = Model.getInstance();
+        itemSubList = model.getLocationDB().get(model.findLocation(locationName));
 
         DatabaseReference databaseDonations = FirebaseDatabase.getInstance()
                 .getReference("donations");
@@ -86,8 +86,8 @@ public class ItemScroller extends AppCompatActivity {
     }
 
 // --Commented out by Inspection START (11/8/18, 5:18 PM):
-//    public ArrayList<Item> getItemSubList() {
-//        return itemSubList;
-//    }
+    public ArrayList<Item> getItemSubList() {
+        return itemSubList;
+    }
 // --Commented out by Inspection STOP (11/8/18, 5:18 PM)
 }

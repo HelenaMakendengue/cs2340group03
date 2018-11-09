@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     public static Map<Integer,Location> getDb() {
         return Collections.unmodifiableMap(db);
     }
+
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

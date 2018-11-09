@@ -4,7 +4,6 @@ package edu.gatech.cs2340.donationtracker;
 /**
  * Represents a location object.
  */
-@SuppressWarnings("unused")
 public class Location {
 
     private String key;
@@ -150,7 +149,9 @@ public class Location {
      *
      * @param type the location type of each location
      */
-    public void setType(LocationType type) { this.type = type; }
+    public void setType(LocationType type) {
+        this.type = type;
+    }
 
     /**
      * This method gets and returns the phone
@@ -190,9 +191,8 @@ public class Location {
         this.website = website;
     }
 
-//    public String toString() {
-//
-//        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type
-//        + " " + phoneNumber + " " + website);
-//    }
+    //for debugging/JUnit Testing purposes
+    public String toString() {
+        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type + " " + phoneNumber + " " + website);
+    }
 }
