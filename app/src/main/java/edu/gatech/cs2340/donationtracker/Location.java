@@ -4,6 +4,7 @@ package edu.gatech.cs2340.donationtracker;
 /**
  * Represents a location object.
  */
+@SuppressWarnings("unused")
 public class Location {
 
     private String key;

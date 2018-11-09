@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.donationtracker;
 
+@SuppressWarnings("unused")
 class SearchTest {
 
 //    @Before

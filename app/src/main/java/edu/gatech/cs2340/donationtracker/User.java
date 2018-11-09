@@ -3,6 +3,7 @@ package edu.gatech.cs2340.donationtracker;
 /**
  * Represents an user object.
  */
+@SuppressWarnings("ALL")
 class User {
 
     private String loginName;
@@ -35,6 +36,7 @@ class User {
      *
      * @return loginName the loginName of the user
      */
+    @SuppressWarnings("unused")
     public String getLoginName() {
         return loginName;
     }

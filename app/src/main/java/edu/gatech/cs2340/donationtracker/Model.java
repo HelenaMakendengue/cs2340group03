@@ -14,6 +14,7 @@ import android.content.Context;
 /**
  * Regulates the object contract and how they are stored.
  */
+@SuppressWarnings("ALL")
 public class Model {
 
     private Context context;
@@ -30,10 +31,9 @@ public class Model {
     public Model(Context current) {
         this.context = current;
     }
-
     private final Map<Location, ArrayList> locationDB = new HashMap<>();
 
-    public static final Model instance = new Model();
+    private static final Model instance = new Model();
 
     /**
      * Getter for the model

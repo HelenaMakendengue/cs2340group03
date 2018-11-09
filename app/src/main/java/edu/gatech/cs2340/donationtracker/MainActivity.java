@@ -108,12 +108,16 @@ public class MainActivity extends AppCompatActivity {
                 String address = ar[4] + ", " + ar[5] + ", " + ar[6] + " " + ar[7];
                 LocationType locationType;
 
-                if ("Store".equals(ar[8])) {
-                    locationType = LocationType.STORE;
-                } else if ("Drop Off".equals(ar[8])) {
-                    locationType = LocationType.DROP_OFF_ONLY;
-                } else {
-                    locationType = LocationType.WAREHOUSE;
+                switch (ar[8]) {
+                    case "Store":
+                        locationType = LocationType.STORE;
+                        break;
+                    case "Drop Off":
+                        locationType = LocationType.DROP_OFF_ONLY;
+                        break;
+                    default:
+                        locationType = LocationType.WAREHOUSE;
+                        break;
                 }
 
                 String id = databaseLocations.push().getKey();
