@@ -86,8 +86,5 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 Log.w("Failed to read value.", error.toException());
             }
         });
-/*
-
-        */
     }
 }

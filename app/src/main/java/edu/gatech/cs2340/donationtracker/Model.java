@@ -28,6 +28,13 @@ public class Model {
     }
 
     /**
+     * Getter for locationDB
+     * @return the locationDB
+     */
+    public Map<Location, ArrayList> getLocationDB() {
+        return locationDB;
+    }
+    /**
      * Add a new location.
      * @param location the location object to be added
      */
