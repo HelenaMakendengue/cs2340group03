@@ -31,7 +31,7 @@ public class Model {
     public Model(Context current) {
         this.context = current;
     }
-    private final Map<Location, ArrayList> locationDB = new HashMap<>();
+    private Map<Location, ArrayList> locationDB = new HashMap<>();
 
     private static final Model instance = new Model();
 
@@ -56,11 +56,20 @@ public class Model {
      * Add a new item to a selected location
      * @param item the item to be added
      * @param location the location where the item is added to
+     * @return boolean true if item is valid
      */
-    public void addItem(Location location, Item item) {
+    public boolean addItem(Location location, Item item) {
+        if (item.getShortDesc().toString().length() == 0 || item.getCategory() == null
+                || item.getLocation() == null) {
+            return false;
+        }
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
+        if (currentlist == null) {
+            currentlist = new ArrayList();
+        }
         currentlist.add(item);
         locationDB.put(location, currentlist);
+        return true;
     }
 
     /**
