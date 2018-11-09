@@ -14,6 +14,7 @@ public class LocationReaderTest {
 
     private final int locationCount = 0;
 
+    @SuppressWarnings("JavaDoc")
     @Test
     public void properLocationCount() {
         assertEquals(locationCount, 5);

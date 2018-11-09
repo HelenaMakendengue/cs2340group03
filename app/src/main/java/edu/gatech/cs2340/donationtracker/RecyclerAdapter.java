@@ -14,12 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Recycler Adapter class displays the locations and its inventory.
+ */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.LocationViewHolder> {
 
     private final List<Location> locations;
 
     //public DatabaseReference databaseLocations;
 
+    /**
+     * A recycler adapter constructor with one param
+     * @param locations the map containing location number and location objects
+t     */
     public RecyclerAdapter(Map<Integer, Location> locations) {
         this.locations = new ArrayList<>(locations.values());
         //this.databaseLocations = FirebaseDatabase.getInstance().getReference("locations");

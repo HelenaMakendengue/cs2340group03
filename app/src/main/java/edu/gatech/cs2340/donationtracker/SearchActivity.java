@@ -26,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Search activity displays the search screen for search bar, search function, and the result.
+*/
 public class SearchActivity extends AppCompatActivity {
 
     private List<Item> searched;
@@ -59,7 +62,8 @@ public class SearchActivity extends AppCompatActivity {
             locationNames.add(loc.getName());
         }
 
-        DatabaseReference databaseDonations = FirebaseDatabase.getInstance().getReference("donations");
+        DatabaseReference databaseDonations = FirebaseDatabase.getInstance()
+                .getReference("donations");
 
         for (String loc : locationNames) {
             Query query = databaseDonations.child(loc);
@@ -70,7 +74,8 @@ public class SearchActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
-                        // Update my client activity list with tbe one new item received from firebase.
+                        // Update my client activity list with tbe one new item
+                        // received from firebase.
                         master.add(d.getValue(Item.class));
                     }
 
@@ -89,11 +94,13 @@ public class SearchActivity extends AppCompatActivity {
 
 
         //set up spinners
-        ArrayAdapter<Category> spinnerAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Category.values());
+        ArrayAdapter<Category> spinnerAdapter = new ArrayAdapter(this,android.R.layout
+                .simple_spinner_item, Category.values());
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categories.setAdapter(spinnerAdapter);
 
-        ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, locationNames);
+        ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter(this,android.R.layout
+                .simple_spinner_item, locationNames);
         spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locations.setAdapter(spinnerAdapter2);
 
@@ -103,7 +110,8 @@ public class SearchActivity extends AppCompatActivity {
 
         //set up recycler view
         recyclerView = findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        RecyclerView.LayoutManager layoutManager
+                = new LinearLayoutManager(this.getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -119,13 +127,16 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             if (textOption.isChecked()) {
-                searched = searcher.searchByName(searchBar.getText().toString().toLowerCase(), searchLocation);
+                searched = searcher.searchByName(searchBar.getText().toString().toLowerCase()
+                        , searchLocation);
             } else if (spinnerOption.isChecked()) {
-                searched = searcher.searchByCategory((Category) categories.getSelectedItem(), searchLocation);
+                searched = searcher.searchByCategory((Category) categories.getSelectedItem()
+                        , searchLocation);
             }
 
             if (searched.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "No Items Matched", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "No Items Matched",
+                        Toast.LENGTH_LONG).show();
                 adapter = new ItemRecyclerAdapter(searched);
                 recyclerView.setAdapter(adapter);
             } else {

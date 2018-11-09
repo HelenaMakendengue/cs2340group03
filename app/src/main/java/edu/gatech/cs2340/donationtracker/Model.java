@@ -59,7 +59,7 @@ public class Model {
      */
     public void addItem(Location location, Item item) {
         ArrayList currentlist = locationDB.get(location); // returns the arraylist
-        currentlist.add((Item) item);
+        currentlist.add(item);
         locationDB.put(location, currentlist);
     }
 

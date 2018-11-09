@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     static final String TAG = "DONATION_TRACKER";
 
     private DatabaseReference databaseLocations;
-    private static final HashMap<Integer, Location> db = new HashMap<>();
+    private static final Map<Integer, Location> db = new HashMap<>();
 
     /**
      * A method for accessing the in-app database
