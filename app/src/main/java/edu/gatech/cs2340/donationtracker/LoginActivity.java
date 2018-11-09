@@ -10,14 +10,21 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The login activity creates a login screen, verifies the user
+ *  from the database, and connects to the Main Activity as well as the welcome activity
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameInput;
     private EditText passwordInput;
     private FirebaseAuth mAuth;
-    // --Commented out by Inspection (11/8/18, 5:18 PM):public static String username;
 
-    //firebase auth login
+    /**
+     *  Login method that connects to firebase
+     * @param user the string inputted as the username from the screen
+     * @param pass the string inputted as the password from the screen
+     */
     private void logIn(String user, String pass) {
         mAuth.signInWithEmailAndPassword(user, pass)
                 .addOnCompleteListener(this, task -> {

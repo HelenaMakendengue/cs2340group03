@@ -21,6 +21,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * The main activity of the application. Shows all locations
+ * and allows users to connect to the Location Detail Activity
+ * by tapping on a location as well as back to the welcome
+ * screen by pressing the logout button.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private final Model model = Model.getInstance();
@@ -28,8 +34,12 @@ public class MainActivity extends AppCompatActivity {
     static final String TAG = "DONATION_TRACKER";
 
     private DatabaseReference databaseLocations;
-
     private static final HashMap<Integer, Location> db = new HashMap<>();
+
+    /**
+     * A method for accessing the in-app database
+     * @return the database
+     */
     public static Map<Integer,Location> getDb() {
         return Collections.unmodifiableMap(db);
     }
@@ -64,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         mapBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MapActivity.class)));
     }
 
+    /**
+     * A method that takes in the csv file in the resources and adds them as location
+     * objects to the database.
+     */
     private void LocationReader() {
 
         try {
