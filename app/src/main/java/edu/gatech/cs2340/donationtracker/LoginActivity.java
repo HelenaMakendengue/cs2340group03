@@ -63,14 +63,16 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString().trim();
 
 //                if (RegistrationActivity.userDatabase.containsKey(userName)
-//                        && RegistrationActivity.userDatabase.get(userName).getPassword().equals(password)) {
+//                        && RegistrationActivity.userDatabase.get(userName).
+//                      getPassword().equals(password)) {
 //                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
 //                } else {
-//                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-//                }
+//                    Toast.makeText(getApplicationContext(), "Login Failed",
+//                  Toast.LENGTH_SHORT).show(); }
             logIn(userName, password);
         });
 
-        cancel.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, WelcomeActivity.class)));
+        cancel.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,
+                WelcomeActivity.class)));
     }
 }

@@ -33,7 +33,7 @@ public class Model {
 
     private final Map<Location, ArrayList> locationDB = new HashMap<>();
 
-    public static final Model instance = new Model();
+    private static final Model instance = new Model();
 
     /**
      * Getter for the model
@@ -86,7 +86,8 @@ public class Model {
 
             //From here we probably should call a model method and pass the InputStream
             //Wrap it in a BufferedReader so that we get the readLine() method
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            BufferedReader br =
+                    new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 
             //Marks the start of the CSV file
             br.mark(1000);
@@ -123,7 +124,8 @@ public class Model {
                 //String id = databaseLocations.push().getKey();
 
                 //new Location is created
-                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
+                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3],
+                        address, locationType, ar[9], ar[10]);
 
                 //Firebase Stuff
                 //databaseLocations.child(id).setValue(newLocation);

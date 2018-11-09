@@ -69,9 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Button Event Listeners
-        logoutBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WelcomeActivity.class)));
+        logoutBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,
+                WelcomeActivity.class)));
 
-        mapBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MapActivity.class)));
+        mapBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,
+                MapActivity.class)));
     }
 
     /**
@@ -87,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
             //From here we probably should call a model method and pass the InputStream
             //Wrap it in a BufferedReader so that we get the readLine() method
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream,
+                    StandardCharsets.UTF_8));
 
 
             //Marks the start of the CSV file
@@ -119,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
                 String id = databaseLocations.push().getKey();
 
                 //new Location is created
-                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
+                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address,
+                        locationType, ar[9], ar[10]);
 
                 databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
 
