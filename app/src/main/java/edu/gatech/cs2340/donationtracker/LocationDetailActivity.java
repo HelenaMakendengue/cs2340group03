@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Location detail activity displays the details of a selected
+ * location and allows connects to the activity that displays a location's
+ * inventory as well as the add item activity.
+ */
 public class LocationDetailActivity extends AppCompatActivity {
 
     private String locationName;
