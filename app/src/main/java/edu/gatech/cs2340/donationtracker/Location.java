@@ -16,7 +16,7 @@ public class Location {
     private String phoneNumber;
     private String website;
 
-//    public Location() {};
+    public Location() {};
 
     /**
      * This method creates a location with the given parameters
