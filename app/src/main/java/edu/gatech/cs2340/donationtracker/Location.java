@@ -190,9 +190,9 @@ public class Location {
         this.website = website;
     }
 
-//    //for debugging purposes
 //    public String toString() {
 //
-//        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type + " " + phoneNumber + " " + website);
+//        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type
+//        + " " + phoneNumber + " " + website);
 //    }
 }

@@ -40,7 +40,8 @@ public class ItemScroller extends AppCompatActivity {
         //Model model = Model.getInstance();
         //itemSubList = model.locationDB.get(model.findLocation(locationName));
 
-        DatabaseReference databaseDonations = FirebaseDatabase.getInstance().getReference("donations");
+        DatabaseReference databaseDonations = FirebaseDatabase.getInstance()
+                .getReference("donations");
 
         Query query = databaseDonations.child(locationName);
 
@@ -69,13 +70,15 @@ public class ItemScroller extends AppCompatActivity {
 
         //Initially display a list with no items.
         recyclerView = findViewById(R.id.itemRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        RecyclerView.LayoutManager layoutManager
+                = new LinearLayoutManager(this.getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new ItemRecyclerAdapter(itemSubList);
         recyclerView.setAdapter(adapter);
 
-        toSearch.setOnClickListener(v -> startActivity(new Intent(ItemScroller.this, SearchActivity.class)));
+        toSearch.setOnClickListener(v ->
+                startActivity(new Intent(ItemScroller.this, SearchActivity.class)));
     }
 
     private void getIncomingIntent() {

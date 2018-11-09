@@ -59,14 +59,16 @@ public class findLocationTest {
 
         String loc3_name = loc3.getName();
 
-        assertNull("Location is not in Db, but null is not returned: ", testModel.findLocation(loc3_name));
+        assertNull("Location is not in Db, but null is not returned: ",
+                testModel.findLocation(loc3_name));
     }
 
     @Test
     public void nullLocation() {
         String loc1_name = loc1.getName();
 
-        assertNull("The Db is empty, but null is not returned: ", testModel.findLocation(loc1_name));
+        assertNull("The Db is empty, but null is not returned: ",
+                testModel.findLocation(loc1_name));
     }
 
 }

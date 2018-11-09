@@ -61,7 +61,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        FirebaseDatabase.getInstance().getReference("locations").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("locations")
+                .addValueEventListener(new ValueEventListener() {
             //public ArrayList<Item> itemSubList;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -70,9 +71,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     // Update my client activity list with tbe one new item received from firebase.
                     Location location = d.getValue(Location.class);
                     //locationLst.add(d.getValue(Location.class));
-                    LatLng latLng = new LatLng(Double.parseDouble(Objects.requireNonNull(location).getLatitude()),
+                    LatLng latLng = new LatLng(Double.
+                            parseDouble(Objects.requireNonNull(location).getLatitude()),
                             Double.parseDouble(location.getLongitude()));
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(location.getName()).snippet("Phone: " + location.getNumber()));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(location.getName())
+                            .snippet("Phone: " + location.getNumber()));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }

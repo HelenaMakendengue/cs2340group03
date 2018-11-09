@@ -80,8 +80,8 @@ public class LocationDetailActivity extends AppCompatActivity {
             setWidget(name, type, longitude, latitude, address, number);
     }
 
-    private void setWidget(CharSequence name, CharSequence type, CharSequence longitude, CharSequence latitude,
-                           CharSequence address, CharSequence number) {
+    private void setWidget(CharSequence name, CharSequence type, CharSequence longitude,
+                           CharSequence latitude, CharSequence address, CharSequence number) {
 
         TextView loc_name = findViewById(R.id.location_name);
         loc_name.setText(name);

@@ -37,7 +37,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText emailInput;
     private Spinner accountType;
     private static final Map<String, User> userDatabase = new HashMap<>();
-    private static final List<String> accountTypes = Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
+    private static final List<String> accountTypes =
+            Arrays.asList("Customer", "Admin", "Manager", "Location Employee");
 
     /**
      * This method creates a user in firebase database with the given parameters
@@ -69,12 +70,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user1 = mAuth.getCurrentUser();
-                        Toast.makeText(RegistrationActivity.this, ":)", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                        Toast.makeText(RegistrationActivity.this, ":)",
+                                Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent
+                                (RegistrationActivity.this, MainActivity.class));
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationActivity.this,
+                                "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
         userDatabase.put(email, createUser(user, pass, email, type));
@@ -94,7 +97,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accountTypes);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter(this, android.R.layout.simple_spinner_item, accountTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accountType.setAdapter(adapter);
 
@@ -108,33 +112,46 @@ public class RegistrationActivity extends AppCompatActivity {
             String email = emailInput.getText().toString().trim();
 
             if ("".equals(username) || "".equals(password) || "".equals(email)) {
-                Toast.makeText(getApplicationContext(), "One or more empty field(s)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "One or more empty field(s)", Toast.LENGTH_SHORT).show();
             } else if (userDatabase.containsKey(username)) {
-                Toast.makeText(getApplicationContext(), "Username taken, please try again", Toast.LENGTH_SHORT).show();
-            } else if ("Admin".equals(accountType.getSelectedItem().toString()) && password.contains("Ez7R")) {
+                Toast.makeText(getApplicationContext(),
+                        "Username taken, please try again", Toast.LENGTH_SHORT).show();
+            } else if ("Admin".equals(accountType.getSelectedItem().toString())
+                    && password.contains("Ez7R")) {
                 // admin pass case
                 createAuth(username, password, email, AccountType.ADMIN);
-                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                startActivity(new Intent(RegistrationActivity.this,
+                        MainActivity.class));
             } else if ("Admin".equals(accountType.getSelectedItem().toString())) {
-                Toast.makeText(getApplicationContext(), "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
-            } else if ("Manager".equals(accountType.getSelectedItem().toString()) && password.contains("QffJ")) {
+                Toast.makeText(getApplicationContext(),
+                        "Admin Permissions Not Granted", Toast.LENGTH_SHORT).show();
+            } else if ("Manager".equals(accountType.getSelectedItem().toString())
+                    && password.contains("QffJ")) {
                 // manager pass case
                 createAuth(username, password, email, AccountType.MANAGER);
-                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                startActivity(new Intent(RegistrationActivity.this,
+                        MainActivity.class));
             } else if ("Manager".equals(accountType.getSelectedItem().toString())) {
-                Toast.makeText(getApplicationContext(), "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
-            } else if ("Location Employee".equals(accountType.getSelectedItem().toString()) && password.contains("OIU8")) {
+                Toast.makeText(getApplicationContext(),
+                        "Manager Permissions Not Granted", Toast.LENGTH_SHORT).show();
+            } else if ("Location Employee".equals(accountType.getSelectedItem().toString())
+                    && password.contains("OIU8")) {
                 // location employee pass case
                 createAuth(username, password, email, AccountType.LOCATION_EMPLOYEE);
-                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                startActivity(new Intent(RegistrationActivity.this,
+                        MainActivity.class));
             } else if ("Location Employee".equals(accountType.getSelectedItem().toString())) {
-                Toast.makeText(getApplicationContext(), "Location Employee Permissions Not Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "Location Employee Permissions Not Granted",
+                        Toast.LENGTH_SHORT).show();
             } else {
                 // default - customer
                 createAuth(username, password, email, AccountType.CUSTOMER);
             }
         });
 
-        cancel.setOnClickListener(v -> startActivity(new Intent(RegistrationActivity.this, WelcomeActivity.class)));
+        cancel.setOnClickListener(v -> startActivity(new Intent
+                (RegistrationActivity.this, WelcomeActivity.class)));
     }
 }
