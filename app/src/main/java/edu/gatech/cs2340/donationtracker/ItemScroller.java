@@ -18,7 +18,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
+/**
+ * Item Scroller displays the items of a selected location
+ * by accessing the database
+ */
 public class ItemScroller extends AppCompatActivity {
 
     private ArrayList<Item> itemSubList;
