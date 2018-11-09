@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("edu.gatech.cs2340.donationtracer", appContext.getPackageName());
+        assertEquals("edu.gatech.cs2340.donationtracker", appContext.getPackageName());
     }
 }

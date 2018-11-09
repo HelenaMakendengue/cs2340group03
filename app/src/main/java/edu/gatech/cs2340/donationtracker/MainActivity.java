@@ -17,7 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import android.content.Context;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private static HashMap<Integer, Location> db = new HashMap<>();
     public static HashMap<Integer, Location> getDb() {
         return db;
+    }
+
+    private static ArrayList<Location> jUnitDB = new ArrayList<>();
+    public static ArrayList<Location> getJUnitDB() {
+        return jUnitDB;
     }
 
     private RecyclerView.LayoutManager layoutManager;
@@ -75,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void LocationReader() {
+    public void LocationReader() {
 
         try {
 
@@ -117,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //new Location is created
                 Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address, locationType, ar[9], ar[10]);
+
+                jUnitDB.add(newLocation);
 
                 databaseLocations.child(id).setValue(newLocation);
 
