@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.donationtracker;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Model {
 
     private final Map<Location, ArrayList> locationDB = new HashMap<>();
     private static final List<Location> modelDB = new ArrayList<>();
+    private static List<User> userDB = new ArrayList<>();
 
     private static final Model instance = new Model();
 
@@ -29,6 +32,13 @@ public class Model {
      */
     public Map<Location, ArrayList> getLocationDB() {
         return locationDB;
+    }
+    /**
+     * Getter for userDB
+     * @return the locationDB
+     */
+    public List<User> getUserDB() {
+        return userDB;
     }
     /**
      * Add a new location.
@@ -70,6 +80,24 @@ public class Model {
             }
         }
         return null;
+    }
+
+    public String registerCustomer(String username, String password, String email) {
+        if ("".equals(username) || "".equals(password) || "".equals(email)) {
+            return "One or more empty field(s)";
+        } else if (password.length() < 6) {
+            return "Password too short.";
+        } else if (!email.contains("@")) {
+           return "The email you entered is not a email.";
+        } else {
+            for (User user : userDB) {
+                if(username.equals(user.getLoginName())) {
+                    return "Username already taken";
+                }
+            }
+            userDB.add(new User(username, password, true, email, AccountType.CUSTOMER));
+            return "Customer created successfully.";
+        }
     }
 
     public static void LocationReaderModel() {
