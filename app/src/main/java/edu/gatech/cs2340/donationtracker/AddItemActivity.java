@@ -67,6 +67,7 @@ public class AddItemActivity extends AppCompatActivity {
             String shortDesc = title.getText().toString().trim();
             String fullDesc = description.getText().toString().trim();
             Double dollarValue = Double.parseDouble(value.getText().toString());
+            String itemComment = comment.getText().toString().trim();
             Model model = Model.getInstance();
             Location currentLocation = model.findLocation(locationTxt);
             String timestamp = new Timestamp(System.currentTimeMillis()).toString();
@@ -74,7 +75,7 @@ public class AddItemActivity extends AppCompatActivity {
             String id = databaseItems.push().getKey();
 
             Item newItem = new Item(timestamp, currentLocation, shortDesc,
-                    fullDesc, dollarValue, (Category) category_spinner.getSelectedItem());
+                    fullDesc, dollarValue, (Category) category_spinner.getSelectedItem(), itemComment);
             addItem(newItem);
         });
 

@@ -8,6 +8,7 @@ class Item {
     private String fullDesc;
     private double dollarValue;
     private Category category;
+    private String comment;
 
     /**
      * This method creates an item with the given parameters
@@ -19,13 +20,14 @@ class Item {
      * @param dollarValue the dollar value of the item
      * @param category the category the item falls under
      */
-    public Item (String timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category) {
+    public Item (String timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category, String comment) {
         this.timestamp = timestamp;
         this.location = location;
         this.shortDesc = shortDesc;
         this.fullDesc = fullDesc;
         this.dollarValue = dollarValue;
         this.category = category;
+        this.comment = comment;
     }
 
     public Item() {}
@@ -139,6 +141,13 @@ class Item {
     public Category getCategory() {
         return category;
     }
+
+    /**
+     * This method returns the comment
+     *
+     * @Return comment
+     */
+    public String getComment() {return comment;}
 
     /**
      * This method represent the item in the form
