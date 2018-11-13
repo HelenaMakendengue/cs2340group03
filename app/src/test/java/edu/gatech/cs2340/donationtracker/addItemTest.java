@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
  * If not, False is returned. There will not be a new item in the firebase database
  * Created by Le-En Huang on 11/08/18.
  */
-@SuppressWarnings("JavaDoc")
 public class addItemTest {
 
     private Model testModel;

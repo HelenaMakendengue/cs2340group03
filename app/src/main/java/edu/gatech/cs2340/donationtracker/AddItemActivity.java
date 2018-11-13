@@ -14,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.sql.Timestamp;
 
 
-@SuppressWarnings({"ALL", "ChainedMethodCall"})
 public class AddItemActivity extends AppCompatActivity {
 
     private DatabaseReference databaseItems;
@@ -26,7 +25,14 @@ public class AddItemActivity extends AppCompatActivity {
     private String longitude;
     private String type;
 
-    @SuppressWarnings("ChainedMethodCall")
+    private Button back;
+    private Button submit;
+    private EditText title;
+    private EditText description;
+    private EditText value;
+    private EditText comment;
+    private Spinner category_spinner;
+
     private void addItem(Item item) {
         databaseItems.child(item.getLocation().getName()).push().setValue(item);
 
@@ -41,7 +47,6 @@ public class AddItemActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @SuppressWarnings("ChainedMethodCall")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +55,7 @@ public class AddItemActivity extends AppCompatActivity {
         //Database References
         databaseItems = FirebaseDatabase.getInstance().getReference("donations");
 
-        Button back = findViewById(R.id.button_cancel);
-        Button submit = findViewById(R.id.button_add);
-        //EditText location = (EditText) findViewById(R.id.editText_location);
-        EditText title = findViewById(R.id.editText_title);
-        EditText description = findViewById(R.id.editText_description);
-        EditText value = findViewById(R.id.editText_value);
-        EditText comment = findViewById(R.id.editText_comment);
-        Spinner category_spinner = findViewById(R.id.spinner_category);
+        initialize();
 
         getIncomingIntent();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
@@ -67,7 +65,7 @@ public class AddItemActivity extends AppCompatActivity {
         submit.setOnClickListener(v -> {
             String locationTxt = locationName;
             String shortDesc = title.getText().toString().trim();
-            @SuppressWarnings("ChainedMethodCall") String fullDesc = description.getText().toString().trim();
+            String fullDesc = description.getText().toString().trim();
             Double dollarValue = Double.parseDouble(value.getText().toString());
             Model model = Model.getInstance();
             Location currentLocation = model.findLocation(locationTxt);
@@ -93,6 +91,17 @@ public class AddItemActivity extends AppCompatActivity {
 
         });
     }
+
+    private void initialize() {
+        back = findViewById(R.id.button_cancel);
+        submit = findViewById(R.id.button_add);
+        title = findViewById(R.id.editText_title);
+        description = findViewById(R.id.editText_description);
+        value = findViewById(R.id.editText_value);
+        comment = findViewById(R.id.editText_comment);
+        category_spinner = findViewById(R.id.spinner_category);
+    }
+
     private void getIncomingIntent() {
         String type = getIntent().getStringExtra("location_type");
         String longitude = getIntent().getStringExtra("location_longitude");

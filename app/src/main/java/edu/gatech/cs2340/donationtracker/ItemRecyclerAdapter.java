@@ -12,14 +12,17 @@ import android.widget.Toast;
 
 import java.util.List;
 
-@SuppressWarnings({"ALL", "ChainedMethodCall"})
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapter.ItemViewHolder> {
 
     private final List<Item> items;
 
+    /**
+     * Constructor for the ItemRecyclerAdapter
+     * @param items a list of items to be displayed
+     */
     public ItemRecyclerAdapter(List<Item> items) {
         this.items = items;
-}
+    }
 
     @NonNull
     @Override

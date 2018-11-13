@@ -14,7 +14,6 @@ public class registerCustomerTest {
 
     private Model testModel;
 
-    @SuppressWarnings("JavaDoc")
     @Before
     public void setUp() {
         testModel = new Model();

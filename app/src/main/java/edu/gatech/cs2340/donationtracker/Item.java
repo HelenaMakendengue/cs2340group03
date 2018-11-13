@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.donationtracker;
 
-@SuppressWarnings("ALL")
 class Item {
 
     private String timestamp;
@@ -90,7 +89,6 @@ class Item {
      * @param shortDesc a short description about an item
  --Commented out by Inspection STOP (11/8/18, 5:18 PM)
      */
-    @SuppressWarnings("unused")
     public void setShortDesc(String shortDesc) { this.shortDesc = shortDesc; }
 
     /**
@@ -109,7 +107,6 @@ class Item {
      *
      * @param fullDesc a full description about an item
      */
-    @SuppressWarnings("unused")
     public void setFullDesc(String fullDesc) {
         this.fullDesc = fullDesc;
     }
@@ -129,7 +126,6 @@ class Item {
      *
      * @param dollarValue a dollar value for the item
      */
-    @SuppressWarnings("unused")
     public void setDollarValue(double dollarValue) {
         this.dollarValue = dollarValue;
     }

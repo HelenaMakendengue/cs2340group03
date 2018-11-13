@@ -197,6 +197,7 @@ public class Location {
 
     //for debugging/JUnit Testing purposes
     public String toString() {
-        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type + " " + phoneNumber + " " + website);
+        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type
+                + " " + phoneNumber + " " + website);
     }
 }

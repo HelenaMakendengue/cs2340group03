@@ -3,7 +3,6 @@ package edu.gatech.cs2340.donationtracker;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("ALL")
 class Search {
     private final Iterable<Item> master;
 
@@ -21,7 +20,7 @@ class Search {
     public List<Item> searchByName(String term, String location) {
         List<Item> searched = new ArrayList<>();
 
-        if ("".equals(term) || term == null) {
+        if ("".equals(term) || (term == null)) {
             return searched;
         }
 
