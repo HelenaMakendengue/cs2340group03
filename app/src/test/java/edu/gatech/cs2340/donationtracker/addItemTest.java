@@ -40,16 +40,16 @@ public class addItemTest {
 
         item1 = new Item(new Timestamp(System.currentTimeMillis()).toString(),
                 loc1, "Winter Coat", "A burgendy female coat",
-                30.9, Category.Clothing);
+                30.9, Category.Clothing, "");
         item2 = new Item(new Timestamp(System.currentTimeMillis()).toString(),
                 null, "Old Hat", "A grey hat",
-                10.0, Category.Hat); // no location
+                10.0, Category.Hat, ""); // no location
         item3 = new Item(new Timestamp(System.currentTimeMillis()).toString(),
                 loc2, "", "Pots and pans",
-                35.7, Category.Kitchen); // no title
+                35.7, Category.Kitchen, ""); // no title
         item4 = new Item(new Timestamp(System.currentTimeMillis()).toString(),
                 loc3, "Container", "Pots and pans",
-                35.7, null); // no category
+                35.7, null, ""); // no category
     }
 
     @SuppressWarnings("JavaDoc")

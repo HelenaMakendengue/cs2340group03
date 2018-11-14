@@ -35,9 +35,9 @@ public class SearchTest {
         location1 = new Location(null, "Howie", null, null, null, null, null, null);
         location3 = new Location(null, "Garbage Can", null, null, null, null, null, null);
 
-        shoe = new Item(null, location1, "Shoelace", null, 1.0, Category.Clothing);
-        lamp = new Item(null, location3, "Lamp", null, 1.0, Category.Electronics);
-        waterBottle = new Item(null, location3, "Water bottle", null, 1.0, Category.Kitchen);
+        shoe = new Item(null, location1, "Shoelace", null, 1.0, Category.Clothing, "");
+        lamp = new Item(null, location3, "Lamp", null, 1.0, Category.Electronics, "");
+        waterBottle = new Item(null, location3, "Water bottle", null, 1.0, Category.Kitchen,"");
 
         master.add(shoe);
         master.add(lamp);
