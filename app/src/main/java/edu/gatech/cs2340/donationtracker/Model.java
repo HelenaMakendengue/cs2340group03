@@ -31,6 +31,7 @@ public class Model {
     public Map<Location, ArrayList> getLocationDB() {
         return locationDB;
     }
+
     /**
      * Getter for userDB
      * @return the locationDB
@@ -38,6 +39,7 @@ public class Model {
     public List<User> getUserDB() {
         return userDB;
     }
+
     /**
      * Add a new location.
      * @param location the location object to be added
@@ -81,7 +83,7 @@ public class Model {
     }
 
     /**
-     * Registers a new customer to the databse
+     * Registers a new customer to the database
      * @param username the username of the new user
      * @param password the password of the new user
      * @param email the email of the nwe user
@@ -105,6 +107,9 @@ public class Model {
         }
     }
 
+    /**
+     * Adds all locations from the CSV file.
+     */
     public static void LocationReaderModel() {
 
         if (modelDB.isEmpty()) {
@@ -136,7 +141,6 @@ public class Model {
                     "www.knfb.org"));
         }
     }
-
 
     /**
      * A method to get a list of locations in the model.

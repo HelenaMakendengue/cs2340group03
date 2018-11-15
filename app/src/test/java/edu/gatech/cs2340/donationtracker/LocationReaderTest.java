@@ -6,11 +6,10 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for the LocationReader() method in Model
- * Method is suppose to find a location from the location list based on the inputted location name
- * If present, location is returned
- * If not present, null is returned
+ * Description
  * Created by Helena Makendengue on 11/08/18.
  */
+@SuppressWarnings("JavaDoc")
 public class LocationReaderTest {
 
     private Model testModel;
