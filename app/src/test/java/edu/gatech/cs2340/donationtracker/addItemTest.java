@@ -3,7 +3,9 @@ package edu.gatech.cs2340.donationtracker;
 import org.junit.Before;
 import org.junit.Test;
 import java.sql.Timestamp;
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for the addItem method in Model
@@ -12,6 +14,7 @@ import static org.junit.Assert.assertEquals;
  * If not, False is returned. There will not be a new item in the firebase database
  * Created by Le-En Huang on 11/08/18.
  */
+@SuppressWarnings("JavaDoc")
 public class addItemTest {
 
     private Model testModel;
@@ -24,7 +27,6 @@ public class addItemTest {
     private Item item3;
     private Item item4;
 
-    @SuppressWarnings("JavaDoc")
     @Before
     public void setUp() {
         testModel = new Model();
@@ -52,36 +54,27 @@ public class addItemTest {
                 35.7, null, ""); // no category
     }
 
-    @SuppressWarnings("JavaDoc")
     @Test
     public void validItem() {
         testModel.addItem(loc1, item1);
-//        testModel.addItem(loc2, item2);
-//        testModel.addItem(loc3, item3);
-
-        assertEquals("Winter Coat is a valid item",
-                true, testModel.addItem(loc1, item1));
+        assertTrue("Winter Coat is a valid item", testModel.addItem(loc1, item1));
     }
 
-    @SuppressWarnings("JavaDoc")
     @Test
     public void invalidItemLocation() {
         testModel.addItem(loc2, item2);
-
-        assertEquals("item missing param: location", false, testModel.addItem(loc2, item2));
+        assertFalse("item missing param: location", testModel.addItem(loc2, item2));
     }
 
     @Test
     public void invalidItemShort() {
         testModel.addItem(loc3, item3);
-        assertEquals("item missing param: shortDescription", false,
-                testModel.addItem(loc3, item3));
+        assertFalse("item missing param: shortDescription", testModel.addItem(loc3, item3));
     }
 
     @Test
     public void invalidItemCategory() {
         testModel.addItem(loc2, item4);
-        assertEquals("item missing param: shortDescription", false,
-                testModel.addItem(loc2, item4));
+        assertFalse("item missing param: shortDescription", testModel.addItem(loc2, item4));
     }
 }

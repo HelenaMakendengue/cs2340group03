@@ -82,36 +82,20 @@ public class MainActivity extends AppCompatActivity {
      * objects to the database.
      */
     private void LocationReader() {
-
         try {
-
-            //Open a stream on the raw file
             InputStream inputStream = getResources().openRawResource(R.raw.locationdata);
-
-            //From here we probably should call a model method and pass the InputStream
-            //Wrap it in a BufferedReader so that we get the readLine() method
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream,
                     StandardCharsets.UTF_8));
-
-
-            //Marks the start of the CSV file
             br.mark(1000);
-
-            //Reads past first line to prevent KEY location from being made...
             br.readLine();
             String text = br.readLine();
-
             while (text != null) {
-
                 String[] ar = text.split(",");
-
                 for (int i = 0; i < ar.length; i++) {
                     ar[i] = ar[i].trim();
                 }
-
                 String address = ar[4] + ", " + ar[5] + ", " + ar[6] + " " + ar[7];
                 LocationType locationType;
-
                 switch (ar[8]) {
                     case "Store":
                         locationType = LocationType.STORE;
@@ -123,28 +107,30 @@ public class MainActivity extends AppCompatActivity {
                         locationType = LocationType.WAREHOUSE;
                         break;
                 }
-
-                String id = databaseLocations.push().getKey();
-
-                //new Location is created
-                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address,
-                        locationType, ar[9], ar[10]);
-
-                databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
-
-                //storing new Location to our database
-                //generate hashcode with ar[0] and ar[1] field
-                db.put(ar[9].hashCode(), newLocation);
-                model.addLocation(newLocation);
-
-//                System.out.println(newLocation);
+                addNewLocation(address, locationType, ar);
                 text = br.readLine();
             }
-
             br.close();
-
         } catch (IOException e) {
             Log.e(MainActivity.TAG, "error reading assets", e);
         }
+    }
+
+    /**
+     *
+     * Adds a new location to the Firebase Database
+     *
+     * @param address takes a string of a location's address
+     * @param locationType takes a LocationType of a location's type
+     * @param ar Takes a String array of the individuals location's details
+     */
+    private void addNewLocation(String address, LocationType locationType, String[] ar)
+    {
+        String id = databaseLocations.push().getKey();
+        Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address,
+                locationType, ar[9], ar[10]);
+        databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
+        db.put(ar[9].hashCode(), newLocation);
+        model.addLocation(newLocation);
     }
 }

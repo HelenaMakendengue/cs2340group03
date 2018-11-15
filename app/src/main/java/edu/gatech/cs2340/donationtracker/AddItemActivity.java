@@ -13,7 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Timestamp;
 
-
+/**
+ * The AddItemActivity initiates the add item screen.
+ */
 public class AddItemActivity extends AppCompatActivity {
 
     private DatabaseReference databaseItems;
@@ -32,6 +34,7 @@ public class AddItemActivity extends AppCompatActivity {
     private EditText value;
     private EditText comment;
     private Spinner category_spinner;
+
 
     private void addItem(Item item) {
         databaseItems.child(item.getLocation().getName()).push().setValue(item);

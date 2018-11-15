@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
+/**
+ * ItemRecyclerAdapter sets the model for adapters.
+ */
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapter.ItemViewHolder> {
 
     private final List<Item> items;
