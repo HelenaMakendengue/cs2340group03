@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class Model {
 
-    private final Map<Location, ArrayList> locationDB = new HashMap<>();
+    private final Map<Location, ArrayList<Item>> locationDB = new HashMap<>();
     private static final List<Location> modelDB = new ArrayList<>();
     private static final List<User> userDB = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class Model {
      * Getter for locationDB
      * @return the locationDB
      */
-    public Map<Location, ArrayList> getLocationDB() {
+    public Map<Location, ArrayList<Item>> getLocationDB() {
         return locationDB;
     }
     /**
@@ -43,7 +43,7 @@ public class Model {
      * @param location the location object to be added
      */
     public void addLocation(Location location) {
-        locationDB.put(location, new ArrayList());
+        locationDB.put(location, new ArrayList<>());
     }
 
     /**
@@ -57,9 +57,9 @@ public class Model {
                 || (item.getLocation() == null)) {
             return false;
         }
-        ArrayList currentlist = locationDB.get(location); // returns the arraylist
+        ArrayList<Item> currentlist = locationDB.get(location); // returns the arraylist
         if (currentlist == null) {
-            currentlist = new ArrayList();
+            currentlist = new ArrayList<Item>();
         }
         currentlist.add(item);
         locationDB.put(location, currentlist);
@@ -105,6 +105,11 @@ public class Model {
         }
     }
 
+
+    /**
+     * A method for testing the location reader.
+     *
+     */
     public static void LocationReaderModel() {
 
         if (modelDB.isEmpty()) {

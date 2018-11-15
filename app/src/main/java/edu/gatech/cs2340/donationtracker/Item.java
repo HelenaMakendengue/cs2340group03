@@ -145,7 +145,7 @@ class Item {
     /**
      * This method returns the comment
      *
-     * @Return comment
+     * @return comment
      */
     public String getComment() {return comment;}
 
