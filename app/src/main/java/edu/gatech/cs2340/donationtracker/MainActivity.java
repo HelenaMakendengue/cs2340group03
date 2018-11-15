@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
      * A method that takes in the csv file in the resources and adds them as location
      * objects to the database.
      */
-    @SuppressWarnings("OverlyLongMethod")
     private void LocationReader() {
         try {
             InputStream inputStream = getResources().openRawResource(R.raw.locationdata);
@@ -108,17 +107,30 @@ public class MainActivity extends AppCompatActivity {
                         locationType = LocationType.WAREHOUSE;
                         break;
                 }
-                String id = databaseLocations.push().getKey();
-                Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address,
-                        locationType, ar[9], ar[10]);
-                databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
-                db.put(ar[9].hashCode(), newLocation);
-                model.addLocation(newLocation);
+                addNewLocation(address, locationType, ar);
                 text = br.readLine();
             }
             br.close();
         } catch (IOException e) {
             Log.e(MainActivity.TAG, "error reading assets", e);
         }
+    }
+
+    /**
+     *
+     * Adds a new location to the Firebase Database
+     *
+     * @param address takes a string of a location's address
+     * @param locationType takes a LocationType of a location's type
+     * @param ar Takes a String array of the individuals location's details
+     */
+    private void addNewLocation(String address, LocationType locationType, String[] ar)
+    {
+        String id = databaseLocations.push().getKey();
+        Location newLocation = new Location(ar[0], ar[1], ar[2], ar[3], address,
+                locationType, ar[9], ar[10]);
+        databaseLocations.child(Objects.requireNonNull(id)).setValue(newLocation);
+        db.put(ar[9].hashCode(), newLocation);
+        model.addLocation(newLocation);
     }
 }
