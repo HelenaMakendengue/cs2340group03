@@ -1,8 +1,5 @@
 package edu.gatech.cs2340.donationtracker;
 
-
-
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,6 +13,7 @@ import static junit.framework.TestCase.assertEquals;
  * Method is suppose to create a list of items that fit the search criteria
  * Created by Matthew Davis Williams on 11/08/18.
  */
+@SuppressWarnings("JavaDoc")
 public class SearchTest {
 
     private Location location1;
