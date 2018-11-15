@@ -42,17 +42,15 @@ class Item {
         return timestamp;
     }
 
-// --Commented out by Inspection START (11/8/18, 5:18 PM):
-//    /**
-//     * This method sets the timestamp for the item's
-//     * creation.
-//     *
-//     * @param timestamp a time in which the item was created
-//     */
-//    public void setTimestamp(String timestamp) {
-//        this.timestamp = timestamp;
-//    }
-// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
+    /**
+     * This method sets the timestamp for the item's
+     * creation.
+     *
+     * @param timestamp a time in which the item was created
+     */
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
     /**
      * The method gets and returns the location
@@ -64,20 +62,17 @@ class Item {
         return location;
     }
 
-// --Commented out by Inspection START (11/8/18, 5:18 PM):
-//    /**
-//     * This method sets the location for the item.
-//     *
-//     * @param location a location at which the item
-//     *                 is available
-//     */
-//    public void setLocation(Location location) { this.location = location; }
-// --Commented out by Inspection STOP (11/8/18, 5:18 PM)
+    /**
+     * This method sets the location for the item.
+     *
+     * @param location a location at which the item
+     *                 is available
+     */
+    public void setLocation(Location location) { this.location = location; }
 
     /**
      * This method gets and returns the short
      * description about the item.
- --Commented out by Inspection START (11/8/18, 5:18 PM):
      *
      * @return the shortDesc about the item
      */
@@ -89,7 +84,6 @@ class Item {
      * This method sets the short description about an item
      *
      * @param shortDesc a short description about an item
- --Commented out by Inspection STOP (11/8/18, 5:18 PM)
      */
     public void setShortDesc(String shortDesc) { this.shortDesc = shortDesc; }
 
