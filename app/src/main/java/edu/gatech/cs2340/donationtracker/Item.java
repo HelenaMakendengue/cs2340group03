@@ -1,10 +1,6 @@
 package edu.gatech.cs2340.donationtracker;
 
-import java.util.ArrayList;
-
-public class Item {
-
-    private static ArrayList<Item> itemList = new ArrayList<>();
+class Item {
 
     private String timestamp;
     private Location location;
@@ -12,6 +8,7 @@ public class Item {
     private String fullDesc;
     private double dollarValue;
     private Category category;
+    private String comment;
 
     /**
      * This method creates an item with the given parameters
@@ -23,13 +20,14 @@ public class Item {
      * @param dollarValue the dollar value of the item
      * @param category the category the item falls under
      */
-    public Item (String timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category) {
+    public Item (String timestamp, Location location, String shortDesc, String fullDesc, Double dollarValue, Category category, String comment) {
         this.timestamp = timestamp;
         this.location = location;
         this.shortDesc = shortDesc;
         this.fullDesc = fullDesc;
         this.dollarValue = dollarValue;
         this.category = category;
+        this.comment = comment;
     }
 
     public Item() {}
@@ -139,22 +137,11 @@ public class Item {
     }
 
     /**
-     * This method sets the category that the item falls under
+     * This method returns the comment
      *
-     * @param category a category that the item falls under
+     * @return comment
      */
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    /**
-     * This method returns a list of store items
-     *
-     * @return itemList
-     */
-    public static ArrayList<Item> getItemList() {
-        return itemList;
-    }
+    public String getComment() {return comment;}
 
     /**
      * This method represent the item in the form

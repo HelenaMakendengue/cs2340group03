@@ -10,19 +10,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * Recycler Adapter class displays the locations and its inventory.
+ */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.LocationViewHolder> {
 
-    private ArrayList<Location> locations;
+    private final List<Location> locations;
 
     //public DatabaseReference databaseLocations;
 
+    /**
+     * A recycler adapter constructor with one param
+     * @param locations the map containing location number and location objects
+t     */
     public RecyclerAdapter(Map<Integer, Location> locations) {
         this.locations = new ArrayList<>(locations.values());
         //this.databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
@@ -31,10 +35,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     @NonNull
     @Override
     public LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.album_layout, parent, false);
-        LocationViewHolder locationViewHolder = new LocationViewHolder(view);
-
-        return locationViewHolder;
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.album_layout, parent, false);
+        return new LocationViewHolder(view);
     }
 
     @Override
@@ -70,12 +73,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Locati
     }
 
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
-        public View mView;
-        public TextView locationName;
-        public TextView locationAddress;
-        public Location location;
+        final View mView;
+        final TextView locationName;
+        final TextView locationAddress;
+        Location location;
 
-        public LocationViewHolder(View itemView) {
+        LocationViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             locationName = itemView.findViewById(R.id.location_name);

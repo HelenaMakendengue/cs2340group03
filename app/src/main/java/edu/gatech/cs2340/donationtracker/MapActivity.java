@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.donationtracker;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,20 +13,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
+/**
+ * The MapActivity initiates the google map display screen,
+ * as well as the pins representing each locations in the
+ * database
+ */
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ArrayList<Location> locationLst = new ArrayList<>();
+//        ArrayList<Location> locationLst = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
@@ -57,35 +61,30 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        DatabaseReference databaseLocations = FirebaseDatabase.getInstance().getReference("locations");
-
-        Query query = databaseLocations;
-
-        query.addValueEventListener(new ValueEventListener() {
-
+        FirebaseDatabase.getInstance().getReference("locations")
+                .addValueEventListener(new ValueEventListener() {
             //public ArrayList<Item> itemSubList;
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     // Update my client activity list with tbe one new item received from firebase.
                     Location location = d.getValue(Location.class);
                     //locationLst.add(d.getValue(Location.class));
-                    LatLng latLng = new LatLng(Double.parseDouble(location.getLatitude()),
+                    LatLng latLng = new LatLng(Double.
+                            parseDouble(Objects.requireNonNull(location).getLatitude()),
                             Double.parseDouble(location.getLongitude()));
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(location.getName()).snippet("Phone: " + location.getNumber()));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(location.getName())
+                            .snippet("Phone: " + location.getNumber()));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.w("Failed to read value.", error.toException());
             }
         });
-/*
-
-        */
     }
 }

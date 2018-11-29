@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+/**
+ * ItemDetail activity displays the inventory screen for each location.
+ */
 public class ItemDetailActivity extends AppCompatActivity {
 
     @Override

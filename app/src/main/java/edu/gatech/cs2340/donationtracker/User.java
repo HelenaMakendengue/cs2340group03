@@ -1,6 +1,9 @@
 package edu.gatech.cs2340.donationtracker;
 
-public class User {
+/**
+ * Represents an user object.
+ */
+class User {
 
     private String loginName;
     private String password;

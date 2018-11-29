@@ -1,17 +1,25 @@
 package edu.gatech.cs2340.donationtracker;
 
+
+/**
+ * Represents a location object.
+ */
 public class Location {
 
-    String key;
-    String name;
-    String latitude;
-    String longitude;
-    String address;
-    LocationType type;
-    String phoneNumber;
-    String website;
+    private String key;
+    private String name;
+    private String latitude;
+    private String longitude;
+    private String address;
+    private LocationType type;
+    private String phoneNumber;
+    private String website;
 
-    public Location() {};
+
+    /**
+     * Creates a location object with no parameters
+     */
+    public Location() {}
 
     /**
      * This method creates a location with the given parameters
@@ -145,7 +153,9 @@ public class Location {
      *
      * @param type the location type of each location
      */
-    public void setType(LocationType type) { this.type = type; }
+    public void setType(LocationType type) {
+        this.type = type;
+    }
 
     /**
      * This method gets and returns the phone
@@ -185,9 +195,9 @@ public class Location {
         this.website = website;
     }
 
-//    //for debugging purposes
-//    public String toString() {
-//
-//        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type + " " + phoneNumber + " " + website);
-//    }
+    //for debugging/JUnit Testing purposes
+    public String toString() {
+        return (key + " " + name + " " + latitude + " " + longitude + " " + address + " " + type
+                + " " + phoneNumber + " " + website);
+    }
 }

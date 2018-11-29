@@ -1,3 +1,5 @@
+import com.google.gms.googleservices.GoogleServicesPlugin
+
 apply plugin: 'com.android.application'
 
 android {
@@ -37,10 +39,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.1'
+    implementation 'com.android.support:support-annotations:27.1.1'
 
 
 }
 
 apply plugin: 'com.google.gms.google-services'
 
-com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+GoogleServicesPlugin.config.disableVersionCheck = true
