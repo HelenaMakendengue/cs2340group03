@@ -58,18 +58,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
         submit.setOnClickListener(v -> {
-
             String userName = usernameInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
-
-//                if (RegistrationActivity.userDatabase.containsKey(userName)
-//                        && RegistrationActivity.userDatabase.get(userName).
-//                      getPassword().equals(password)) {
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Login Failed",
-//                  Toast.LENGTH_SHORT).show(); }
-            logIn(userName, password);
+            if (userName.length() == 0 || password.length() == 0) {
+                Toast.makeText(LoginActivity.this, "Fill in credential.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                logIn(userName, password);
+            }
         });
 
         cancel.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,
