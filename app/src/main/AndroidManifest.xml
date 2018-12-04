@@ -36,6 +36,7 @@
         <activity android:name=".LocationDetailActivity" />
         <activity android:name=".ItemDetailActivity" />
         <activity android:name=".AddItemActivity" />
+        <activity android:name=".DirectionActivity"/>
         <activity
             android:name=".ItemScroller"
             android:label="@string/title_activity_item_scroller"

@@ -27,6 +27,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         setContentView(R.layout.location_detail);
         Button seeInventoryBtn = findViewById(R.id.button_inventory);
         Button addItemBtn = findViewById(R.id.button_addItem);
+        Button directionBtn = findViewById(R.id.button_direction);
 
         getIncomingIntent();
 //        System.out.println("Location in LocationDetailActivity: " + locationName);
@@ -52,6 +53,17 @@ public class LocationDetailActivity extends AppCompatActivity {
 
         seeInventoryBtn.setOnClickListener(v -> {
             Intent intent = new Intent(LocationDetailActivity.this, ItemScroller.class);
+            intent.putExtra("location_name", locationName);
+            intent.putExtra("location_type",type);
+            intent.putExtra("location_longitude",longitude);
+            intent.putExtra("location_latitude", latitude);
+            intent.putExtra("location_address", address);
+            intent.putExtra("location_number", number);
+            startActivity(intent);
+        });
+
+        directionBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LocationDetailActivity.this, DirectionActivity.class);
             intent.putExtra("location_name", locationName);
             intent.putExtra("location_type",type);
             intent.putExtra("location_longitude",longitude);
