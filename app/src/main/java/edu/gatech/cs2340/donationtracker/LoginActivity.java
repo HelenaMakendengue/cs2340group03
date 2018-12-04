@@ -45,12 +45,26 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void reset(String email) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(this, task ->  {
+
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Email sent!",
+                                Toast.LENGTH_SHORT).show();
+                        }
+
+                });
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         Button submit = findViewById(R.id.button_login2);
+        Button reset = findViewById(R.id.button_reset);
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
         Button cancel = findViewById(R.id.button_cancel);
@@ -65,6 +79,18 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             } else {
                 logIn(userName, password);
+            }
+        });
+
+        reset.setOnClickListener(v -> {
+            String userName = usernameInput.getText().toString().trim();
+            if (userName.length() == 0) {
+                Toast.makeText(LoginActivity.this, "Please provide email.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String emailAddress = userName;
+                reset(emailAddress);
             }
         });
 
