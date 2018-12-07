@@ -9,7 +9,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
 /**
  * The DirectionActivity initiates the google map display screen,
  * as well as the pins representing selected location.
@@ -53,6 +52,7 @@ public class DirectionActivity extends FragmentActivity implements OnMapReadyCal
         this.number = number;
 
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.

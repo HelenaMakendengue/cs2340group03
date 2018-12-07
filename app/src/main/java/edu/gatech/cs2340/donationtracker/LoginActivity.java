@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GithubAuthProvider;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 
 /**
  * The login activity creates a login screen, verifies the user
@@ -45,6 +48,18 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void github(String email, String password) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String token = "e3f31100b304f71a585cc2c20fe4f692b1d4c01a";
+        AuthCredential credential = GithubAuthProvider.getCredential(token);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task ->  {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     private void reset(String email) {
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(this, task ->  {
@@ -69,6 +84,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password_input);
         Button cancel = findViewById(R.id.button_cancel);
         mAuth = FirebaseAuth.getInstance();
+        Button github = findViewById(R.id.button_github);
+
 
 
         submit.setOnClickListener(v -> {
@@ -79,6 +96,17 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             } else {
                 logIn(userName, password);
+            }
+        });
+
+        github.setOnClickListener(v -> {
+            String userName = usernameInput.getText().toString().trim();
+            String password = passwordInput.getText().toString().trim();
+            if (userName.length() == 0 || password.length() == 0) {
+                Toast.makeText(LoginActivity.this, "Fill in credential.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                github(userName, password);
             }
         });
 
